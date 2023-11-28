@@ -64,15 +64,15 @@ public class PlayerController : MonoBehaviour
 	if(direction == 0f)
 	{
 		anim.SetBool("isWalking", false);
-		idle.enabled = true;
-		walking.enabled = false;
+/*		idle.enabled = true;
+		walking.enabled = false;*/
 	}
 
 	else
 	{
 		anim.SetBool("isWalking", true);
-		idle.enabled = false;
-		walking.enabled = true;
+/*		idle.enabled = false;
+		walking.enabled = true;*/
 	}
 
         if (direction > 0f)
