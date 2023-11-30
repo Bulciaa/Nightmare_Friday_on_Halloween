@@ -44,12 +44,10 @@ public class PlayerController : MonoBehaviour
     public Sprite redHeartSprite;
     private int currentLives = 3;
 
-	 public int remainingJumpsinWater = 1;
-
     void Start()
     {
 	
-	anim = GetComponent<Animator>();
+	    anim = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
 	
@@ -94,7 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
-        // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
+        // SprawdŸ, czy gracz zebra³ wymagan¹ iloœæ punktów
         if (score >= maxScore)
         {
             LoadNextLevel();
@@ -107,11 +105,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-		
+
             transform.position = respawnPoint;
             LoseLife();
         }
-	
+
 
         else if (collision.tag == "NextLevel")
         {
@@ -134,19 +132,6 @@ public class PlayerController : MonoBehaviour
             currentPlatform = collision.transform.parent;
             transform.SetParent(currentPlatform);
         }
-
-	else if (collision.CompareTag("Water"))
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                if (isTouchingGround || remainingJumpsinWater > 0) // Sprawd , czy gracz jest na ziemi lub ma pozosta e skoki
-                {
-                    player.velocity = new Vector2(player.velocity.x, jumpingPower);
-                }
-            }
-
-        }
-
     }
 
     void OnTriggerExit2D(Collider2D collision)
