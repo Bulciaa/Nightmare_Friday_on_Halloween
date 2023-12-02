@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isTouchingGround;
 
-	public Animator anim;
+	public Animator animator;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -44,12 +44,19 @@ public class PlayerController : MonoBehaviour
     public Sprite redHeartSprite;
     private int currentLives = 3;
 
+    public Slider oxygenBar;
+    public float maxOxygen = 100f;
+    public float losingOxygenPerSeconds = 1f;
+
     void Start()
     {
-	
-	    anim = GetComponent<Animator>();
+
+        animator = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
+
+/*        oxygenBar.maxValue = maxOxygen;*/
+        oxygenBar.value = maxOxygen;
 	
         UpdateUI();
     }
@@ -59,19 +66,19 @@ public class PlayerController : MonoBehaviour
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
 
-	if(direction == 0f)
-	{
-		anim.SetBool("isWalking", false);
-/*		idle.enabled = true;
-		walking.enabled = false;*/
-	}
+	    if(direction == 0f)
+	    {
+        animator.SetBool("isWalking", false);
+/*        idle.enabled = true;
+        walking.enabled = false;*/
+        }
 
-	else
-	{
-		anim.SetBool("isWalking", true);
-/*		idle.enabled = false;
-		walking.enabled = true;*/
-	}
+	    else
+	    {
+        animator.SetBool("isWalking", true);
+/*        idle.enabled = false;
+        walking.enabled = true;*/
+        }
 
         if (direction > 0f)
         {
@@ -97,7 +104,6 @@ public class PlayerController : MonoBehaviour
         {
             LoadNextLevel();
         }
-
 	
     }
 
@@ -132,6 +138,10 @@ public class PlayerController : MonoBehaviour
             currentPlatform = collision.transform.parent;
             transform.SetParent(currentPlatform);
         }
+        if (collision.CompareTag("Water"))
+        {
+            LoseOxygen();
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -142,6 +152,21 @@ public class PlayerController : MonoBehaviour
             currentPlatform = null;
             transform.SetParent(null);
         }
+    }
+
+    private void LoseOxygen()
+    {
+        oxygenBar.value = losingOxygenPerSeconds * Time.deltaTime;
+
+        if (oxygenBar.value <= 0)
+        {
+            Invoke("LoseLifeWithBlackHeart", 2f);
+        }
+    }
+    private void LoseLifeWithBlackHeart()
+    {
+        // Zmiana obrazka serduszka na czarne serduszko
+        hearts[currentLives].sprite = blackHeartSprite;
     }
     private void LoseLife()
     {
@@ -155,8 +180,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Zmiana obrazka serduszka na czarne serduszko
-            hearts[currentLives].sprite = blackHeartSprite;
+            LoseLifeWithBlackHeart();
         }
     }
 
