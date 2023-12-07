@@ -8022,15 +8022,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpingPower: 16
-  animator: {fileID: 0}
-  groundCheck: {fileID: 0}
-  groundCheckRadius: 0
+  animator: {fileID: 876972649}
+  groundCheck: {fileID: 1755174718}
+  groundCheckRadius: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  respaPoint: {fileID: 0}
-  blackHeartSprite: {fileID: 0}
-  redHeartSprite: {fileID: 0}
+    m_Bits: 8
+  respaPoint: {fileID: 522227651}
+  blackHeartSprite: {fileID: 21300000, guid: 14a7a9ff9aeaa914ca855bab217d1895, type: 3}
+  redHeartSprite: {fileID: 21300000, guid: 17b0f86f2d744904fbb4993337389283, type: 3}
 --- !u!1 &885620847
 GameObject:
   m_ObjectHideFlags: 0
