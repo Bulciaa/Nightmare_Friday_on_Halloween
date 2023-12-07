@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
 	[field:SerializeField]
     public float jumpingPower = 16f;
+	
     private float direction = 0f;
     private Rigidbody2D player;
 
@@ -44,10 +45,15 @@ public class PlayerController : MonoBehaviour
     public Sprite redHeartSprite;
     private int currentLives = 3;
 
+    
+
+   
+
+
     void Start()
     {
 	
-	    anim = GetComponent<Animator>();
+	   // anim = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
 	
@@ -56,19 +62,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
 
 	if(direction == 0f)
 	{
-		anim.SetBool("isWalking", false);
+		//anim.SetBool("isWalking", false);
 /*		idle.enabled = true;
 		walking.enabled = false;*/
 	}
 
 	else
 	{
-		anim.SetBool("isWalking", true);
+	//	anim.SetBool("isWalking", true);
+		
 /*		idle.enabled = false;
 		walking.enabled = true;*/
 	}
@@ -92,7 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
-        // SprawdŸ, czy gracz zebra³ wymagan¹ iloœæ punktów
+        // Sprawd , czy gracz zebra  wymagan  ilo   punkt w
         if (score >= maxScore)
         {
             LoadNextLevel();
@@ -105,7 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-
+		
             transform.position = respawnPoint;
             LoseLife();
         }
@@ -124,8 +132,12 @@ public class PlayerController : MonoBehaviour
 
         else if (collision.CompareTag("Coin"))
         {
+		
             CollectCoin(collision.gameObject);
+		
         }
+
+		
         else if (collision.CompareTag("Platform"))
         {
             isOnMovingPlatform = true;
@@ -157,6 +169,7 @@ public class PlayerController : MonoBehaviour
         {
             // Zmiana obrazka serduszka na czarne serduszko
             hearts[currentLives].sprite = blackHeartSprite;
+		
         }
     }
 
@@ -174,6 +187,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
 
     private void CollectCoin(GameObject coin)
     {
