@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ZarządzanieScenami : MonoBehaviour
 {
+public void PlaySound()
+{
+	  GetComponent<AudioSource>().Play();
+	
+}
 
  public void ZmienScene()
 {
