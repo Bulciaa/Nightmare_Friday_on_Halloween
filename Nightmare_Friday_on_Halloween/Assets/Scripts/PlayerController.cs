@@ -3,36 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-	
-/*	public AudioSource walking;
-	public AudioSource idle;*/
-	
+
+    /*	public AudioSource walking;
+        public AudioSource idle;*/
+
     public float speed = 5f;
 
-	[field:SerializeField]
     public float jumpingPower = 16f;
     private float direction = 0f;
     private Rigidbody2D player;
 
     private bool isTouchingGround;
 
-	public Animator animator;
+    public Animator animator;
 
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
 
-    /*    public string nextLevelScene;*/
+    public string nextLevelScene;
 
-    [SerializeField]
     public Slider progressBar;
-/*    private int score = 0;
+    private int score = 0;
     public int maxScore = 10;
-    private int coinsCollected = 0;*/
+    private int orbCollected = 0;
 
     private Vector3 respawnPoint;
     public Transform respaPoint;
@@ -96,13 +94,13 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
-/*        // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
+        // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
         if (score >= maxScore)
         {
             LoadNextLevel();
-        }*/
+        }
 
-	
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -115,27 +113,27 @@ public class PlayerController : MonoBehaviour
         }
 */
 
-        /*        else if (collision.tag == "NextLevel")
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                    respawnPoint = respaPoint.position;
-                }
-                else if (collision.tag == "PreviousLevel")
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-                    respawnPoint = respaPoint.position;
-                }
+        if (collision.tag == "NextLevel")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            respawnPoint = respaPoint.position;
+        }
+        else if (collision.tag == "PreviousLevel")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            respawnPoint = respaPoint.position;
+        }
 
-                else if (collision.CompareTag("Coin"))
-                {
-                    CollectCoin(collision.gameObject);
-                }
-                else if (collision.CompareTag("Platform"))
-                {
-                    isOnMovingPlatform = true;
-                    currentPlatform = collision.transform.parent;
-                    transform.SetParent(currentPlatform);
-                }*/
+        else if (collision.CompareTag("Orb"))
+        {
+            CollectOrb(collision.gameObject);
+        }
+/*        else if (collision.CompareTag("Platform"))
+        {
+            isOnMovingPlatform = true;
+            currentPlatform = collision.transform.parent;
+            transform.SetParent(currentPlatform);
+        }*/
     }
 
 
@@ -180,25 +178,25 @@ public class PlayerController : MonoBehaviour
         }*/
     }
 
-    /*    private void CollectCoin(GameObject coin)
+    private void CollectOrb(GameObject orb)
+    {
+        score++;
+        progressBar.value = (float)score / maxScore;
+
+        orbCollected++;
+
+        Destroy(orb);
+
+        if (orbCollected >= 20)
         {
-            score++;
-            progressBar.value = (float)score / maxScore;
-
-            coinsCollected++;
-
-            Destroy(coin);
-
-            if (coinsCollected >= 20)
-            {
-                LoadNextLevel();
-            }
+            LoadNextLevel();
         }
-        private void LoadNextLevel()
+    }
+    private void LoadNextLevel()
+    {
+        if (!string.IsNullOrEmpty(nextLevelScene))
         {
-            if (!string.IsNullOrEmpty(nextLevelScene))
-            {
-                SceneManager.LoadScene(nextLevelScene);
-            }
-        }*/
+            SceneManager.LoadScene(nextLevelScene);
+        }
+    }
 }
