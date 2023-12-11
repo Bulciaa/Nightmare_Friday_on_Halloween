@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-	
     /*	public AudioSource walking;
         public AudioSource idle;*/
 
@@ -37,24 +36,28 @@ public class PlayerController : MonoBehaviour
     public Transform respaPoint;
 
 
-/*    private bool isOnMovingPlatform = false;
-    private Transform currentPlatform = null;*/
+    /*    private bool isOnMovingPlatform = false;
+        private Transform currentPlatform = null;*/
 
     [SerializeField]
     public Image[] hearts;
     public Sprite blackHeartSprite;
     public Sprite redHeartSprite;
-/*    private int currentLives = 3;*/
+    /*    private int currentLives = 3;*/
 
+    public GameObject portalPrefab; // Reference to your portal prefab
+    private GameObject currentPortal; // Instance of the portal in the scene
+/*    public float delayBeforeNextLevel = 2f; // Delay in seconds before loading the next level
 
+    private bool isStopped = false;*/
     void Start()
     {
-	
-	    animator = GetComponent<Animator>();
+
+        animator = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
 
-/*        UpdateUI();*/
+        /*        UpdateUI();*/
     }
 
     void Update()
@@ -62,19 +65,19 @@ public class PlayerController : MonoBehaviour
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
 
-	if(direction == 0f)
-	{
-		animator.SetBool("isWalking", false);
-/*		idle.enabled = true;
-		walking.enabled = false;*/
-	}
+        if (direction == 0f)
+        {
+            animator.SetBool("isWalking", false);
+            /*		idle.enabled = true;
+                    walking.enabled = false;*/
+        }
 
-	else
-	{
-		animator.SetBool("isWalking", true);
-/*		idle.enabled = false;
-		walking.enabled = true;*/
-	}
+        else
+        {
+            animator.SetBool("isWalking", true);
+            /*		idle.enabled = false;
+                    walking.enabled = true;*/
+        }
 
         if (direction > 0f)
         {
@@ -95,29 +98,37 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
-        // Sprawd , czy gracz zebrze  wymagan  ilo   punkt w
-        if (score >= maxScore)
+        // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
+        if (score >= maxScore && currentPortal == null)
         {
-            LoadNextLevel();
+            SpawnPortal();
         }
-
+      
 
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-/*        if (collision.CompareTag("Enemy"))
+        /*        if (collision.CompareTag("Enemy"))
+                {
+
+                    transform.position = respawnPoint;
+                    LoseLife();
+                }
+        */
+
+        if (collision.tag == "NextLevel" && currentPortal != null)
         {
 
-            transform.position = respawnPoint;
-            LoseLife();
-        }
-*/
+            StartCoroutine(DelayBeforeNextLevel());
+/*            // Zatrzymaj gracza
+            isStopped = true;
 
-        if (collision.tag == "NextLevel")
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            respawnPoint = respaPoint.position;
+            // Zatrzymaj gracza ustawiaj¹c prêdkoœæ na zero
+            player.velocity = Vector2.zero;*/
+
+            // Invoke LoadNextLevel po 3 sekundach
+/*            Invoke("LoadNextLevel", delayBeforeNextLevel);*/
         }
         else if (collision.tag == "PreviousLevel")
         {
@@ -129,24 +140,20 @@ public class PlayerController : MonoBehaviour
         {
             CollectOrb(collision.gameObject);
         }
-/*        else if (collision.CompareTag("Platform"))
-        {
-            isOnMovingPlatform = true;
-            currentPlatform = collision.transform.parent;
-            transform.SetParent(currentPlatform);
-        }*/
+        /*        else if (collision.CompareTag("Platform"))
+                {
+                    isOnMovingPlatform = true;
+                    currentPlatform = collision.transform.parent;
+                    transform.SetParent(currentPlatform);
+                }*/
+    }
+    private IEnumerator DelayBeforeNextLevel()
+    {
+        player.constraints = RigidbodyConstraints2D.FreezePosition;
+        yield return new WaitForSeconds(3f);
+        LoadNextLevel();
     }
 
-
-    /*    void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Platform"))
-            {
-                isOnMovingPlatform = false;
-                currentPlatform = null;
-                transform.SetParent(null);
-            }
-        }*/
     /*    private void LoseLife()
         {
             currentLives--;
@@ -166,17 +173,17 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateUI()
     {
-/*        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < currentLives)
-            {
-                hearts[i].sprite = redHeartSprite;
-            }
-            else
-            {
-                hearts[i].sprite = blackHeartSprite;
-            }
-        }*/
+        /*        for (int i = 0; i < hearts.Length; i++)
+                {
+                    if (i < currentLives)
+                    {
+                        hearts[i].sprite = redHeartSprite;
+                    }
+                    else
+                    {
+                        hearts[i].sprite = blackHeartSprite;
+                    }
+                }*/
     }
 
     private void CollectOrb(GameObject orb)
@@ -188,16 +195,36 @@ public class PlayerController : MonoBehaviour
 
         Destroy(orb);
 
-        if (orbCollected >= 20)
+        if (orbCollected >= maxScore && currentPortal == null)
         {
-	 LoadNextLevel();
+            SpawnPortal();
         }
     }
+    private void SpawnPortal()
+    {
+        // Offset to start the raycast slightly above and to the side of the player
+        float portalSpawnOffsetX = (transform.localScale.x > 0f) ? 4f : -4f;
+        Vector3 raycastStart = transform.position + new Vector3(portalSpawnOffsetX, 0.5f, 0f);
+
+        // Raycast to check for ground beneath the spawn position
+        RaycastHit2D hit = Physics2D.Raycast(raycastStart, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
+
+        // If the ray hits something, set the portalSpawnPosition to the hit point plus an offset
+        Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 1.5f) : transform.position;
+
+        // Instantiate the portalPrefab at the determined position
+        currentPortal = Instantiate(portalPrefab, portalSpawnPosition, Quaternion.identity);
+    }
+
     private void LoadNextLevel()
     {
         if (!string.IsNullOrEmpty(nextLevelScene))
         {
+            Destroy(currentPortal);
             SceneManager.LoadScene(nextLevelScene);
         }
+/*        // Po za³adowaniu nastêpnego poziomu, odstaw zatrzymanie gracza
+        isStopped = false;*/
     }
 }
+    
