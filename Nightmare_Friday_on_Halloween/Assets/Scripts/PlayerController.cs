@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
+	
     /*	public AudioSource walking;
         public AudioSource idle;*/
 
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
-        // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
+        // Sprawd , czy gracz zebrze  wymagan  ilo   punkt w
         if (score >= maxScore)
         {
             LoadNextLevel();
@@ -189,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
         if (orbCollected >= 20)
         {
-            LoadNextLevel();
+	 LoadNextLevel();
         }
     }
     private void LoadNextLevel()
