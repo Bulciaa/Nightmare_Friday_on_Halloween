@@ -171,6 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3080623771755539931}
   - component: {fileID: 3080623771755539930}
+  - component: {fileID: 133522645451295038}
   - component: {fileID: 3080623771755539923}
   - component: {fileID: 3080623771755539935}
   - component: {fileID: 3080623771755539934}
@@ -252,6 +253,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &133522645451295038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3080623771755539929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e80f115afc3b646bff28429ff6b497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oxygenSlider: {fileID: 0}
+  oxygenDepletionRate: 1
 --- !u!114 &3080623771755539923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,8 +385,8 @@ MonoBehaviour:
   - {fileID: 3080623771433489890}
   - {fileID: 3080623771362604307}
   m_Bounds:
-    m_Center: {x: 0.20401448, y: -0.09544551, z: 0}
-    m_Extent: {x: 1.0185205, y: 1.3703619, z: 0}
+    m_Center: {x: 0.2040146, y: -0.09544647, z: 0}
+    m_Extent: {x: 1.0185206, y: 1.3703614, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
