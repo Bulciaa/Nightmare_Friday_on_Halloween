@@ -21,6 +21,7 @@ public class OxygenBarController : MonoBehaviour
         {
             // Gracz wszed³ do obszaru z wod¹
             isUnderwater = true;
+            SetOxygenBarVisibility(true); // Poka¿ pasek tlenu, gdy gracz jest w wodzie
         }
     }
 
@@ -30,6 +31,10 @@ public class OxygenBarController : MonoBehaviour
         {
             // Gracz opuœci³ obszar z wod¹
             isUnderwater = false;
+            if (oxygenSlider.value >= 100f)
+            {
+                SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
+            }
         }
     }
 
@@ -41,13 +46,16 @@ public class OxygenBarController : MonoBehaviour
             {
                 // Gracz jest w obszarze wody, zmniejszaj tlenu
                 oxygenSlider.value -= oxygenDepletionRate * Time.deltaTime;
-                SetOxygenBarVisibility(true); // Poka¿ pasek tlenu, gdy gracz jest w wodzie
             }
-            else if (!isUnderwater && oxygenSlider.value < 100f)
+            else if (!isUnderwater && oxygenSlider.value < 1f)
             {
                 // Gracz jest poza obszarem wody, zwiêkszaj tlenu
                 oxygenSlider.value += oxygenRegenerationRate * Time.deltaTime;
-                SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy gracz jest poza wod¹
+            }
+
+            else if (!isUnderwater && oxygenSlider.value >= 1f)
+            {
+                SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
             }
 
             yield return null;
