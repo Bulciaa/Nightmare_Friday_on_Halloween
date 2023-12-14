@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public Image[] hearts;
     public Sprite blackHeartSprite;
     public Sprite redHeartSprite;
-    /*    private int currentLives = 3;*/
+    private int currentLives = 3;
 
     public GameObject portalPrefab; // Reference to your portal prefab
     private GameObject currentPortal; // Instance of the portal in the scene
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
 
-        /*        UpdateUI();*/
+        UpdateUI();
     }
 
     void Update()
@@ -105,13 +105,13 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        /*        if (collision.CompareTag("Enemy"))
-                {
+        if (collision.CompareTag("Enemy"))
+        {
 
-                    transform.position = respawnPoint;
-                    LoseLife();
-                }
-        */
+            transform.position = respawnPoint;
+            LoseLife();
+        }
+
 
         if (collision.tag == "NextLevel" && currentPortal != null)
         {
@@ -136,6 +136,12 @@ public class PlayerController : MonoBehaviour
         {
             CollectOrb(collision.gameObject);
         }
+
+        else if (collision.CompareTag("Bubble"))
+        {
+            CollectBubble(collision.gameObject);
+        }
+
     }
     private IEnumerator DelayBeforeNextLevel()
     {
@@ -144,38 +150,51 @@ public class PlayerController : MonoBehaviour
         LoadNextLevel();
     }
 
-    /*    private void LoseLife()
-        {
-            currentLives--;
-            UpdateUI();
+    private void LoseLife()
+    {
+        currentLives--;
+        UpdateUI();
 
-            if (currentLives <= 0)
-            {
-                SceneManager.LoadScene(3);
-                Debug.Log("Game Over!");
-            }
-            else
-            {
-                // Zmiana obrazka serduszka na czarne serduszko
-                hearts[currentLives].sprite = blackHeartSprite;
-            }
-        }*/
+        if (currentLives <= 0)
+        {
+            SceneManager.LoadScene(3);
+            Debug.Log("Game Over!");
+        }
+        else
+        {
+            // Zmiana obrazka serduszka na czarne serduszko
+            hearts[currentLives].sprite = blackHeartSprite;
+        }
+    }
 
     private void UpdateUI()
     {
-        /*        for (int i = 0; i < hearts.Length; i++)
-                {
-                    if (i < currentLives)
-                    {
-                        hearts[i].sprite = redHeartSprite;
-                    }
-                    else
-                    {
-                        hearts[i].sprite = blackHeartSprite;
-                    }
-                }*/
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < currentLives)
+            {
+                hearts[i].sprite = redHeartSprite;
+            }
+            else
+            {
+                hearts[i].sprite = blackHeartSprite;
+            }
+        }
     }
 
+    private void CollectBubble(GameObject bubble)
+    {
+        OxygenBarController oxygenController = GetComponent<OxygenBarController>();
+
+        if (oxygenController != null)
+        {
+            // Dodaj 5 punktów do paska tlenu
+            oxygenController.AddOxygenPoints(5);
+
+            // Dodatkowe operacje (np. zniszcz obiekt "dodatkowyTlen")
+            Destroy(bubble);
+        }
+    }
     private void CollectOrb(GameObject orb)
     {
         score++;
@@ -213,8 +232,7 @@ public class PlayerController : MonoBehaviour
             Destroy(currentPortal);
             SceneManager.LoadScene(nextLevelScene);
         }
-/*        // Po za³adowaniu nastêpnego poziomu, odstaw zatrzymanie gracza
-        isStopped = false;*/
+
     }
 }
     

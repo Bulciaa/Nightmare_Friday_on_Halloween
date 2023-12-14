@@ -9,8 +9,12 @@ public class OxygenBarController : MonoBehaviour
     public float oxygenRegenerationRate = 2.0f; // Szybkoœæ odnawiania tlenu na sekundê
     public Transform playerHead; // Referencja do obiektu reprezentuj¹cego g³owê gracza
     public float oxygenBarDistance = 1.0f; // Odleg³oœæ od g³owy gracza, na której ma byæ umieszczony pasek tlenu
+    public float smoothDampTime = 0.3f; // Czas p³ynnego poruszania paska tlenu
+
+    public int MaxOxygen = 10;
 
     private bool isUnderwater = false;
+    private Vector3 velocity = Vector3.zero;
 
     private void Start()
     {
@@ -37,6 +41,12 @@ public class OxygenBarController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Aktualizuj p³ynne poruszanie paska tlenu nad g³ow¹ gracza
+        UpdateOxygenBarPosition();
+    }
+
     private IEnumerator UpdateOxygen()
     {
         while (true)
@@ -46,24 +56,30 @@ public class OxygenBarController : MonoBehaviour
                 // Gracz jest w obszarze wody, zmniejszaj tlenu
                 oxygenSlider.value -= oxygenDepletionRate * Time.deltaTime;
             }
-            else if (!isUnderwater && oxygenSlider.value < 10f)
+            else if (!isUnderwater && oxygenSlider.value < MaxOxygen)
             {
                 // Gracz jest poza obszarem wody, zwiêkszaj tlenu
                 oxygenSlider.value += oxygenRegenerationRate * Time.deltaTime;
-                if (oxygenSlider.value >= 100f)
+                if (oxygenSlider.value >= MaxOxygen)
                 {
                     SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
                 }
             }
-            else if (!isUnderwater && oxygenSlider.value >= 10f)
+            else if (!isUnderwater && oxygenSlider.value >= MaxOxygen)
             {
                 SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
             }
 
-            // Aktualizuj pozycjê paska tlenu nad g³ow¹ gracza
-            UpdateOxygenBarPosition();
-
             yield return null;
+        }
+    }
+    public void AddOxygenPoints(int points)
+    {
+        oxygenSlider.value += points;
+
+        if (oxygenSlider.value > MaxOxygen)
+        {
+            oxygenSlider.value = MaxOxygen;
         }
     }
 
@@ -72,7 +88,7 @@ public class OxygenBarController : MonoBehaviour
         if (playerHead != null)
         {
             Vector3 targetPosition = playerHead.position + new Vector3(0f, oxygenBarDistance, 0f);
-            oxygenSlider.transform.position = targetPosition;
+            oxygenSlider.transform.position = Vector3.SmoothDamp(oxygenSlider.transform.position, targetPosition, ref velocity, smoothDampTime);
         }
     }
 
