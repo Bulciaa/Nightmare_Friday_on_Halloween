@@ -35,10 +35,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 respawnPoint;
     public Transform respaPoint;
 
-
-    /*    private bool isOnMovingPlatform = false;
-        private Transform currentPlatform = null;*/
-
     [SerializeField]
     public Image[] hearts;
     public Sprite blackHeartSprite;
@@ -68,15 +64,15 @@ public class PlayerController : MonoBehaviour
         if (direction == 0f)
         {
             animator.SetBool("isWalking", false);
-            /*		idle.enabled = true;
-                    walking.enabled = false;*/
+/*            idle.enabled = true;
+            walking.enabled = false;*/
         }
 
         else
         {
             animator.SetBool("isWalking", true);
-            /*		idle.enabled = false;
-                    walking.enabled = true;*/
+/*            idle.enabled = false;
+            walking.enabled = true;*/
         }
 
         if (direction > 0f)
@@ -140,12 +136,6 @@ public class PlayerController : MonoBehaviour
         {
             CollectOrb(collision.gameObject);
         }
-        /*        else if (collision.CompareTag("Platform"))
-                {
-                    isOnMovingPlatform = true;
-                    currentPlatform = collision.transform.parent;
-                    transform.SetParent(currentPlatform);
-                }*/
     }
     private IEnumerator DelayBeforeNextLevel()
     {
@@ -210,7 +200,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(raycastStart, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
 
         // If the ray hits something, set the portalSpawnPosition to the hit point plus an offset
-        Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 1.5f) : transform.position;
+        Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 2.5f) : transform.position;
 
         // Instantiate the portalPrefab at the determined position
         currentPortal = Instantiate(portalPrefab, portalSpawnPosition, Quaternion.identity);
