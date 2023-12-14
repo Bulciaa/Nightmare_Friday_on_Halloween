@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public Slider progressBar;
     private int score = 0;
-    public int maxScore = 10;
+    public int maxOrb = 10;
     private int orbCollected = 0;
 
     private Vector3 respawnPoint;
@@ -43,9 +43,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject portalPrefab; // Reference to your portal prefab
     private GameObject currentPortal; // Instance of the portal in the scene
-/*    public float delayBeforeNextLevel = 2f; // Delay in seconds before loading the next level
+    /*    public float delayBeforeNextLevel = 2f; // Delay in seconds before loading the next level
 
-    private bool isStopped = false;*/
+        private bool isStopped = false;*/
+
+    public int additionalOxygenPoints = 5; // Liczba dodatkowych punktów tlenu po zebraniu obiektu "Bubble"
     void Start()
     {
 
@@ -95,7 +97,7 @@ public class PlayerController : MonoBehaviour
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
         // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
-        if (score >= maxScore && currentPortal == null)
+        if (score >= maxOrb && currentPortal == null)
         {
             SpawnPortal();
         }
@@ -188,8 +190,8 @@ public class PlayerController : MonoBehaviour
 
         if (oxygenController != null)
         {
-            // Dodaj 5 punktów do paska tlenu
-            oxygenController.AddOxygenPoints(5);
+            // Dodaj dodatkowe punkty do paska tlenu
+            oxygenController.AddOxygenPoints(additionalOxygenPoints);
 
             // Dodatkowe operacje (np. zniszcz obiekt "dodatkowyTlen")
             Destroy(bubble);
@@ -198,13 +200,13 @@ public class PlayerController : MonoBehaviour
     private void CollectOrb(GameObject orb)
     {
         score++;
-        progressBar.value = (float)score / maxScore;
+        progressBar.value = (float)score / maxOrb;
 
         orbCollected++;
 
         Destroy(orb);
 
-        if (orbCollected >= maxScore && currentPortal == null)
+        if (orbCollected >= maxOrb && currentPortal == null)
         {
             SpawnPortal();
         }

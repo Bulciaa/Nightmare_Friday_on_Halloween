@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Orb
   - NextLevel
+  - Bubble
+  - Enemy
   layers:
   - Default
   - TransparentFX
