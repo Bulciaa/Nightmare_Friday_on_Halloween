@@ -17,6 +17,11 @@ public class OxygenBarController : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
 
     public float darkenDuration = 3f; // Czas trwania ciemnienia ekranu po spadniêciu paska tlenu do zera
+    public float restoreDuration = 2f; // Czas przywracania jasnoœci ekranu
+    public Image screenOverlay; // Obrazek do pokrycia ekranu w celu uzyskania efektu zaciemnienia
+    public Color darkenedColor = new Color(0, 0, 0, 0.5f); // Kolor zaciemnienia
+    public float darknessIntensity = 0.5f; // Moc przyciemnienia
+
     private bool isDarkened = false;
     private float defaultBrightness;
 
@@ -24,6 +29,9 @@ public class OxygenBarController : MonoBehaviour
     {
         SetOxygenBarVisibility(false); // Ukryj pasek tlenu na pocz¹tku gry
         defaultBrightness = RenderSettings.ambientIntensity;
+
+        // Ukryj overlay na pocz¹tku gry
+        screenOverlay.gameObject.SetActive(false);
         StartCoroutine(UpdateOxygen());
     }
 
@@ -61,9 +69,10 @@ public class OxygenBarController : MonoBehaviour
                 if (isDarkened)
                 {
                     // Jeœli ekran by³ wczeœniej zaciemniony, przywróæ jasnoœæ
-                    ResetScreenBrightness();
+                    StartCoroutine(RestoreScreen());
                     isDarkened = false;
                 }
+
                 // Gracz jest w obszarze wody, zmniejszaj tlenu
                 oxygenSlider.value -= oxygenDepletionRate * Time.deltaTime;
 
@@ -75,8 +84,16 @@ public class OxygenBarController : MonoBehaviour
             }
             else if (!isUnderwater && oxygenSlider.value < MaxOxygen)
             {
+                if (isDarkened)
+                {
+                    // Jeœli ekran by³ wczeœniej zaciemniony, przywróæ jasnoœæ
+                    StartCoroutine(RestoreScreen());
+                    isDarkened = false;
+                }
+
                 // Gracz jest poza obszarem wody, zwiêkszaj tlenu
                 oxygenSlider.value += oxygenRegenerationRate * Time.deltaTime;
+
                 if (oxygenSlider.value >= MaxOxygen)
                 {
                     SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
@@ -90,6 +107,9 @@ public class OxygenBarController : MonoBehaviour
             yield return null;
         }
     }
+
+
+
     public void AddOxygenPoints(int points)
     {
         oxygenSlider.value += points;
@@ -115,15 +135,15 @@ public class OxygenBarController : MonoBehaviour
     }
     private IEnumerator DarkenScreen()
     {
+        screenOverlay.gameObject.SetActive(true);
+
         float elapsedTime = 0f;
-        float startBrightness = RenderSettings.ambientIntensity;
 
         while (elapsedTime < darkenDuration)
         {
-            // Ciemnienie ekranu zaczyna siê od wszystkich krawêdzi i ciemnieje do œrodka
             float t = Mathf.SmoothStep(0f, 1f, elapsedTime / darkenDuration);
-            float darkenedBrightness = Mathf.Lerp(startBrightness, 0f, t);
-            RenderSettings.ambientIntensity = darkenedBrightness;
+            float currentDarknessIntensity = Mathf.Lerp(0f, darknessIntensity, t);
+            screenOverlay.color = darkenedColor * currentDarknessIntensity;
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -132,8 +152,26 @@ public class OxygenBarController : MonoBehaviour
         isDarkened = true;
     }
 
+    private IEnumerator RestoreScreen()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < restoreDuration)
+        {
+            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / restoreDuration);
+            float currentDarknessIntensity = Mathf.Lerp(darknessIntensity, 0f, t);
+            screenOverlay.color = darkenedColor * currentDarknessIntensity;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        screenOverlay.gameObject.SetActive(false);
+    }
+
     private void ResetScreenBrightness()
     {
-        RenderSettings.ambientIntensity = defaultBrightness;
+        screenOverlay.gameObject.SetActive(false);
+        screenOverlay.color = Color.clear;
     }
 }
