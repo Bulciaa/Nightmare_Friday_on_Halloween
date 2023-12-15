@@ -29,27 +29,25 @@ public class PlayerController : MonoBehaviour
 
     public Slider progressBar;
     private int score = 0;
-    public int maxScore = 10;
+    public int maxOrb = 10;
     private int orbCollected = 0;
 
     private Vector3 respawnPoint;
     public Transform respaPoint;
 
-
-    /*    private bool isOnMovingPlatform = false;
-        private Transform currentPlatform = null;*/
-
     [SerializeField]
     public Image[] hearts;
     public Sprite blackHeartSprite;
     public Sprite redHeartSprite;
-    /*    private int currentLives = 3;*/
+    private int currentLives = 3;
 
     public GameObject portalPrefab; // Reference to your portal prefab
     private GameObject currentPortal; // Instance of the portal in the scene
-/*    public float delayBeforeNextLevel = 2f; // Delay in seconds before loading the next level
+    /*    public float delayBeforeNextLevel = 2f; // Delay in seconds before loading the next level
 
-    private bool isStopped = false;*/
+        private bool isStopped = false;*/
+
+    public int additionalOxygenPoints = 5; // Liczba dodatkowych punktów tlenu po zebraniu obiektu "Bubble"
     void Start()
     {
 
@@ -57,7 +55,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
 
-        /*        UpdateUI();*/
+        UpdateUI();
     }
 
     void Update()
@@ -68,15 +66,15 @@ public class PlayerController : MonoBehaviour
         if (direction == 0f)
         {
             animator.SetBool("isWalking", false);
-            /*		idle.enabled = true;
-                    walking.enabled = false;*/
+/*            idle.enabled = true;
+            walking.enabled = false;*/
         }
 
         else
         {
             animator.SetBool("isWalking", true);
-            /*		idle.enabled = false;
-                    walking.enabled = true;*/
+/*            idle.enabled = false;
+            walking.enabled = true;*/
         }
 
         if (direction > 0f)
@@ -99,7 +97,7 @@ public class PlayerController : MonoBehaviour
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
         // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
-        if (score >= maxScore && currentPortal == null)
+        if (score >= maxOrb && currentPortal == null)
         {
             SpawnPortal();
         }
@@ -109,13 +107,13 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        /*        if (collision.CompareTag("Enemy"))
-                {
+        if (collision.CompareTag("Enemy"))
+        {
 
-                    transform.position = respawnPoint;
-                    LoseLife();
-                }
-        */
+            transform.position = respawnPoint;
+            LoseLife();
+        }
+
 
         if (collision.tag == "NextLevel" && currentPortal != null)
         {
@@ -140,12 +138,12 @@ public class PlayerController : MonoBehaviour
         {
             CollectOrb(collision.gameObject);
         }
-        /*        else if (collision.CompareTag("Platform"))
-                {
-                    isOnMovingPlatform = true;
-                    currentPlatform = collision.transform.parent;
-                    transform.SetParent(currentPlatform);
-                }*/
+
+        else if (collision.CompareTag("Bubble"))
+        {
+            CollectBubble(collision.gameObject);
+        }
+
     }
     private IEnumerator DelayBeforeNextLevel()
     {
@@ -154,48 +152,61 @@ public class PlayerController : MonoBehaviour
         LoadNextLevel();
     }
 
-    /*    private void LoseLife()
-        {
-            currentLives--;
-            UpdateUI();
+    private void LoseLife()
+    {
+        currentLives--;
+        UpdateUI();
 
-            if (currentLives <= 0)
-            {
-                SceneManager.LoadScene(3);
-                Debug.Log("Game Over!");
-            }
-            else
-            {
-                // Zmiana obrazka serduszka na czarne serduszko
-                hearts[currentLives].sprite = blackHeartSprite;
-            }
-        }*/
+        if (currentLives <= 0)
+        {
+            SceneManager.LoadScene(3);
+            Debug.Log("Game Over!");
+        }
+        else
+        {
+            // Zmiana obrazka serduszka na czarne serduszko
+            hearts[currentLives].sprite = blackHeartSprite;
+        }
+    }
 
     private void UpdateUI()
     {
-        /*        for (int i = 0; i < hearts.Length; i++)
-                {
-                    if (i < currentLives)
-                    {
-                        hearts[i].sprite = redHeartSprite;
-                    }
-                    else
-                    {
-                        hearts[i].sprite = blackHeartSprite;
-                    }
-                }*/
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < currentLives)
+            {
+                hearts[i].sprite = redHeartSprite;
+            }
+            else
+            {
+                hearts[i].sprite = blackHeartSprite;
+            }
+        }
     }
 
+    private void CollectBubble(GameObject bubble)
+    {
+        OxygenBarController oxygenController = GetComponent<OxygenBarController>();
+
+        if (oxygenController != null)
+        {
+            // Dodaj dodatkowe punkty do paska tlenu
+            oxygenController.AddOxygenPoints(additionalOxygenPoints);
+
+            // Dodatkowe operacje (np. zniszcz obiekt "dodatkowyTlen")
+            Destroy(bubble);
+        }
+    }
     private void CollectOrb(GameObject orb)
     {
         score++;
-        progressBar.value = (float)score / maxScore;
+        progressBar.value = (float)score / maxOrb;
 
         orbCollected++;
 
         Destroy(orb);
 
-        if (orbCollected >= maxScore && currentPortal == null)
+        if (orbCollected >= maxOrb && currentPortal == null)
         {
             SpawnPortal();
         }
@@ -210,7 +221,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(raycastStart, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
 
         // If the ray hits something, set the portalSpawnPosition to the hit point plus an offset
-        Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 1.5f) : transform.position;
+        Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 2.5f) : transform.position;
 
         // Instantiate the portalPrefab at the determined position
         currentPortal = Instantiate(portalPrefab, portalSpawnPosition, Quaternion.identity);
@@ -223,8 +234,7 @@ public class PlayerController : MonoBehaviour
             Destroy(currentPortal);
             SceneManager.LoadScene(nextLevelScene);
         }
-/*        // Po za³adowaniu nastêpnego poziomu, odstaw zatrzymanie gracza
-        isStopped = false;*/
+
     }
 }
     
