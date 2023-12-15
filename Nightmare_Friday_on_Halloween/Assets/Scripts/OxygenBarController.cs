@@ -16,9 +16,14 @@ public class OxygenBarController : MonoBehaviour
     private bool isUnderwater = false;
     private Vector3 velocity = Vector3.zero;
 
+    public float darkenDuration = 3f; // Czas trwania ciemnienia ekranu po spadniêciu paska tlenu do zera
+    private bool isDarkened = false;
+    private float defaultBrightness;
+
     private void Start()
     {
         SetOxygenBarVisibility(false); // Ukryj pasek tlenu na pocz¹tku gry
+        defaultBrightness = RenderSettings.ambientIntensity;
         StartCoroutine(UpdateOxygen());
     }
 
@@ -53,8 +58,20 @@ public class OxygenBarController : MonoBehaviour
         {
             if (isUnderwater && oxygenSlider.value > 0f)
             {
+                if (isDarkened)
+                {
+                    // Jeœli ekran by³ wczeœniej zaciemniony, przywróæ jasnoœæ
+                    ResetScreenBrightness();
+                    isDarkened = false;
+                }
                 // Gracz jest w obszarze wody, zmniejszaj tlenu
                 oxygenSlider.value -= oxygenDepletionRate * Time.deltaTime;
+
+                if (oxygenSlider.value <= 0f)
+                {
+                    // Pasek tlenu spad³ do zera, zacznij zaciemnianie ekranu
+                    StartCoroutine(DarkenScreen());
+                }
             }
             else if (!isUnderwater && oxygenSlider.value < MaxOxygen)
             {
@@ -95,5 +112,28 @@ public class OxygenBarController : MonoBehaviour
     private void SetOxygenBarVisibility(bool isVisible)
     {
         oxygenSlider.gameObject.SetActive(isVisible);
+    }
+    private IEnumerator DarkenScreen()
+    {
+        float elapsedTime = 0f;
+        float startBrightness = RenderSettings.ambientIntensity;
+
+        while (elapsedTime < darkenDuration)
+        {
+            // Ciemnienie ekranu zaczyna siê od wszystkich krawêdzi i ciemnieje do œrodka
+            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / darkenDuration);
+            float darkenedBrightness = Mathf.Lerp(startBrightness, 0f, t);
+            RenderSettings.ambientIntensity = darkenedBrightness;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isDarkened = true;
+    }
+
+    private void ResetScreenBrightness()
+    {
+        RenderSettings.ambientIntensity = defaultBrightness;
     }
 }
