@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject gameplayUI;
 =======
     [SerializeField]public GameObject gameplayUI;
->>>>>>> Stashed changes
+
 
     private bool isPaused = false;
 
