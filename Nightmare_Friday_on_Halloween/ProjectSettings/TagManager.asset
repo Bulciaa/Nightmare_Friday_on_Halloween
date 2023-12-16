@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - Orb
+  - NextLevel
+  - Bubble
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - Player
+  - PostProcessing
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 622905761
+    locked: 0
+  - name: 4
+    uniqueID: 3979252487
+    locked: 0
+  - name: 3
+    uniqueID: 1980734651
+    locked: 0
+  - name: 2
+    uniqueID: 3681348037
+    locked: 0
+  - name: 1
+    uniqueID: 2409384727
+    locked: 0
+  - name: 0
+    uniqueID: 427055301
+    locked: 0
+  - name: UI
+    uniqueID: 2434905489
+    locked: 0
