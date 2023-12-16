@@ -192,7 +192,7 @@ Transform:
   m_Children:
   - {fileID: 517401674}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &22756865
 GameObject:
@@ -597,7 +597,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -654,7 +654,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 9673
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5886,7 +5886,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -5943,7 +5943,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 1064
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10936,7 +10936,7 @@ Transform:
   - {fileID: 1002535461}
   - {fileID: 40765114}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &368412294
 GameObject:
@@ -11062,7 +11062,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -11119,7 +11119,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 3796
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16047,7 +16047,7 @@ Transform:
   m_Children:
   - {fileID: 192162417}
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482600224
 GameObject:
@@ -16173,7 +16173,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -16230,7 +16230,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 6980
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -21308,8 +21308,8 @@ MonoBehaviour:
   - {fileID: 1822321320}
   - {fileID: 1157849835}
   m_Bounds:
-    m_Center: {x: 0.3002169, y: -0.10368097, z: 0.0000000037252903}
-    m_Extent: {x: 1.1620774, y: 1.3149635, z: 0}
+    m_Center: {x: 0.32342207, y: -0.11452925, z: 0.0000000037252903}
+    m_Extent: {x: 1.1316183, y: 1.3279581, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -21617,7 +21617,7 @@ Transform:
   m_Children:
   - {fileID: 308716665}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &564870888
 GameObject:
@@ -22233,8 +22233,8 @@ MonoBehaviour:
   - {fileID: 1941386187}
   - {fileID: 1781266521}
   m_Bounds:
-    m_Center: {x: -1.7469909, y: -2.7623584, z: 0}
-    m_Extent: {x: 1.4468429, y: 1.5972703, z: 0}
+    m_Center: {x: -3.4362922, y: -5.0221453, z: 0}
+    m_Extent: {x: 1.6043582, y: 1.640227, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -22358,7 +22358,7 @@ Transform:
   - {fileID: 571053403}
   - {fileID: 307226606}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &722626194
 GameObject:
@@ -22554,7 +22554,7 @@ Transform:
   m_Children:
   - {fileID: 1660542236}
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823793974
 GameObject:
@@ -28047,7 +28047,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1002535458
 GameObject:
@@ -28153,58 +28153,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 309973151}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1036144095
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1036144097}
-  - component: {fileID: 1036144096}
-  m_Layer: 0
-  m_Name: "Prze\u0142\u0105czanie\u015Awiat\u0142a"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!95 &1036144096
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036144095}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f711e5d24a6453f49bf65740e7288258, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
---- !u!4 &1036144097
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036144095}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4518976, y: -0.563052, z: -0.0037974892}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044933244
 GameObject:
@@ -28473,7 +28421,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -28530,7 +28478,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 34
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -33171,7 +33119,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1109305141}
   - component: {fileID: 1109305140}
-  - component: {fileID: 1109305142}
   m_Layer: 0
   m_Name: "\u015Awiat\u0142o5"
   m_TagString: Untagged
@@ -33273,26 +33220,6 @@ Transform:
   m_Father: {fileID: 1508644385}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1109305142
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109305139}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 47c0798b06f89e942b4847d96267f926, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1128768116
 GameObject:
   m_ObjectHideFlags: 0
@@ -33322,7 +33249,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1142366637
 GameObject:
@@ -34419,7 +34346,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -34476,7 +34403,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: 6602
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -39176,7 +39103,7 @@ Transform:
   m_Children:
   - {fileID: 1307524375}
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393937294
 GameObject:
@@ -44302,7 +44229,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1508644384
 GameObject:
@@ -44523,7 +44450,7 @@ GameObject:
   - component: {fileID: 1602966582}
   - component: {fileID: 1602966581}
   m_Layer: 0
-  m_Name: "PortalPixelPo\u0142owa"
+  m_Name: "PortalPixelDolnaPo\u0142owaG\xF3ra"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44587,8 +44514,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -613619259
-  m_SortingLayer: 4
+  m_SortingLayerID: 1980734651
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a26ac3a6d451169439c5f221ae7e8eb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45318,8 +45245,8 @@ MonoBehaviour:
   - {fileID: 2140016468}
   - {fileID: 465113999}
   m_Bounds:
-    m_Center: {x: -0.027067184, y: -0.15427852, z: -0.0000000037252903}
-    m_Extent: {x: 1.0007573, y: 1.4402163, z: 2.220446e-16}
+    m_Center: {x: -0.036370993, y: -0.19762278, z: -0.0000000037252903}
+    m_Extent: {x: 1.010061, y: 1.3946123, z: 2.220446e-16}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -45554,7 +45481,7 @@ Transform:
   m_Children:
   - {fileID: 377134412}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1822321319
 GameObject:
@@ -45631,7 +45558,7 @@ GameObject:
   - component: {fileID: 1826866087}
   - component: {fileID: 1826866086}
   m_Layer: 0
-  m_Name: "PortalPixelPo\u0142owaDolnaCz\u0119\u015B\u0107"
+  m_Name: "PortalPixelG\xF3rnaPo\u0142owaDolnaCz\u0119\u015B\u0107"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45923,7 +45850,7 @@ GameObject:
   - component: {fileID: 1925989357}
   - component: {fileID: 1925989356}
   m_Layer: 0
-  m_Name: "PortalPixelPo\u0142owaG\xF3rnaCz\u0119\u015B\u0107"
+  m_Name: "PortalPixelG\xF3rnaPo\u0142owaG\xF3rnaCz\u0119\u015B\u0107"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46669,7 +46596,7 @@ GameObject:
   - component: {fileID: 2105711956}
   - component: {fileID: 2105711955}
   m_Layer: 0
-  m_Name: "PortalPixelPo\u0142owaD\xF3\u0142"
+  m_Name: "PortalPixelDolnaPo\u0142owaD\xF3\u0142"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
