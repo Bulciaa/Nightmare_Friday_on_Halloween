@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
         LoadNextLevel();
     }
 
-    private void LoseLife()
+    public void LoseLife()
     {
         currentLives--;
         UpdateUI();

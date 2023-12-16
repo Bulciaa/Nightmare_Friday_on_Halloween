@@ -18,12 +18,16 @@ public class OxygenBarController : MonoBehaviour
 
     public float darkenDuration = 3f; // Czas trwania ciemnienia ekranu po spadniêciu paska tlenu do zera
     public float restoreDuration = 2f; // Czas przywracania jasnoœci ekranu
+    public float lifeLossInterval = 5f; // Okres czasu, co ile gracz traci jedno ¿ycie po zaciemnieniu ekranu
     public Image screenOverlay; // Obrazek do pokrycia ekranu w celu uzyskania efektu zaciemnienia
     public Color darkenedColor = new Color(0, 0, 0, 0.5f); // Kolor zaciemnienia
     public float darknessIntensity = 0.5f; // Moc przyciemnienia
 
     private bool isDarkened = false;
     private float defaultBrightness;
+    private float lastDarkenedTime; // Czas, kiedy ostatnio zaciemniono ekran
+    private float lastLifeLossTime; // Czas, kiedy ostatnio gracz straci³ ¿ycie
+
 
     private void Start()
     {
@@ -71,6 +75,7 @@ public class OxygenBarController : MonoBehaviour
                     // Jeœli ekran by³ wczeœniej zaciemniony, przywróæ jasnoœæ
                     StartCoroutine(RestoreScreen());
                     isDarkened = false;
+                    lastDarkenedTime = Time.time;
                 }
 
                 // Gracz jest w obszarze wody, zmniejszaj tlenu
@@ -82,26 +87,42 @@ public class OxygenBarController : MonoBehaviour
                     StartCoroutine(DarkenScreen());
                 }
             }
-            else if (!isUnderwater && oxygenSlider.value < MaxOxygen)
+            else if (!isUnderwater && oxygenSlider.value < 100f)
             {
                 if (isDarkened)
                 {
                     // Jeœli ekran by³ wczeœniej zaciemniony, przywróæ jasnoœæ
                     StartCoroutine(RestoreScreen());
                     isDarkened = false;
+                    lastDarkenedTime = Time.time;
                 }
 
                 // Gracz jest poza obszarem wody, zwiêkszaj tlenu
                 oxygenSlider.value += oxygenRegenerationRate * Time.deltaTime;
 
-                if (oxygenSlider.value >= MaxOxygen)
+                if (oxygenSlider.value >= 100f)
                 {
                     SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
                 }
             }
-            else if (!isUnderwater && oxygenSlider.value >= MaxOxygen)
+            else if (!isUnderwater && oxygenSlider.value >= 100f)
             {
                 SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
+            }
+
+            // SprawdŸ, czy minê³o 5 sekund od zaciemnienia ekranu
+            if (isDarkened && Time.time - lastDarkenedTime > lifeLossInterval)
+            {
+                // Minê³o wystarczaj¹co czasu, aby gracz straci³ ¿ycie
+                if (Time.time - lastLifeLossTime > lifeLossInterval)
+                {
+                    PlayerController playerController = GetComponent<PlayerController>();
+                    if (playerController != null)
+                    {
+                        playerController.LoseLife();
+                        lastLifeLossTime = Time.time;
+                    }
+                }
             }
 
             yield return null;
