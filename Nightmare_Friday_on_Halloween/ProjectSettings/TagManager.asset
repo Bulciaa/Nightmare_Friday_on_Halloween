@@ -9,6 +9,7 @@ TagManager:
   - NextLevel
   - Bubble
   - Enemy
+  - Ladder
   layers:
   - Default
   - TransparentFX
