@@ -3,7 +3,11 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
   [SerializeField]  public GameObject pauseMenuUI;
+<<<<<<< Updated upstream
     public GameObject gameplayUI;
+=======
+    [SerializeField]public GameObject gameplayUI;
+>>>>>>> Stashed changes
 
     private bool isPaused = false;
 
@@ -43,4 +47,7 @@ public class PauseMenu : MonoBehaviour
         gameplayUI.SetActive(true);
     }
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
