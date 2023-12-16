@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         private bool isStopped = false;*/
 
     public int additionalOxygenPoints = 5; // Liczba dodatkowych punktów tlenu po zebraniu obiektu "Bubble"
+
     void Start()
     {
 
