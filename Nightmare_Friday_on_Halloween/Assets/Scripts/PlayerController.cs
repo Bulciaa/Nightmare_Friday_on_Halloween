@@ -64,20 +64,20 @@ public class PlayerController : MonoBehaviour
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
 
-        if (direction == 0f)
+/*        if (direction == 0f)
         {
             animator.SetBool("isWalking", false);
-/*            idle.enabled = true;
-            walking.enabled = false;*/
+            idle.enabled = true;
+            walking.enabled = false;
         }
 
         else
         {
             animator.SetBool("isWalking", true);
-/*            idle.enabled = false;
-            walking.enabled = true;*/
+            idle.enabled = false;
+            walking.enabled = true;
         }
-
+*/
         if (direction > 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
