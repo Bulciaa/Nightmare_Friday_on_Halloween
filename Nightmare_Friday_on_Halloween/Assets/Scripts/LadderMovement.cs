@@ -28,7 +28,7 @@ public class LadderMovement : MonoBehaviour
             isClimbing = false;
             if (playerRigidbody != null)
             {
-                playerRigidbody.gravityScale = 1f; // Re-enable gravity when not climbing
+                playerRigidbody.gravityScale = 3f; // Re-enable gravity when not climbing
                 playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0f); // Stop vertical movement
             }
             player = null;
