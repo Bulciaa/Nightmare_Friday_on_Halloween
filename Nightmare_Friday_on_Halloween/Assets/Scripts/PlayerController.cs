@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    /*	public AudioSource walking;
-        public AudioSource idle;*/
+   	// public AudioSource walking;
+  //      public AudioSource idle;
 
     public float speed = 5f;
 
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
         private bool isStopped = false;*/
 
-    public int additionalOxygenPoints = 5; // Liczba dodatkowych punktów tlenu po zebraniu obiektu "Bubble"
+    public int additionalOxygenPoints = 5; // Liczba dodatkowych punkt w tlenu po zebraniu obiektu "Bubble"
 
     void Start()
     {
@@ -64,20 +64,20 @@ public class PlayerController : MonoBehaviour
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
 
-/*        if (direction == 0f)
+        if (direction == 0f)
         {
             animator.SetBool("isWalking", false);
-            idle.enabled = true;
-            walking.enabled = false;
+       //     idle.enabled = true;
+          //  walking.enabled = false;
         }
 
         else
         {
             animator.SetBool("isWalking", true);
-            idle.enabled = false;
-            walking.enabled = true;
+        //    idle.enabled = false;
+          //  walking.enabled = true;
         }
-*/
+
         if (direction > 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(player.velocity.x, jumpingPower);
         }
-        // SprawdŸ, czy gracz zebrze³ wymagan¹ iloœæ punktów
+        // Sprawd , czy gracz zebrze  wymagan  ilo   punkt w
         if (score >= maxOrb && currentPortal == null)
         {
             SpawnPortal();
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 /*            // Zatrzymaj gracza
             isStopped = true;
 
-            // Zatrzymaj gracza ustawiaj¹c prêdkoœæ na zero
+            // Zatrzymaj gracza ustawiaj c pr dko   na zero
             player.velocity = Vector2.zero;*/
 
             // Invoke LoadNextLevel po 3 sekundach
