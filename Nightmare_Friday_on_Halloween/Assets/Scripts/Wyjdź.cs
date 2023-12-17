@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class Wyjdź : MonoBehaviour
 {
 
+public void ExitMainMenu()
+{
+	SceneManager.LoadScene(0);
+}
 
 public void Wyjdz()
 {

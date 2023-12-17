@@ -693,8 +693,8 @@ MonoBehaviour:
   - {fileID: 1857521412}
   - {fileID: 2032276311}
   m_Bounds:
-    m_Center: {x: 0.20574021, y: -0.11624849, z: 0}
-    m_Extent: {x: 1.0290424, y: 1.285904, z: 0}
+    m_Center: {x: 0.20574033, y: -0.11624825, z: 0}
+    m_Extent: {x: 1.0290422, y: 1.2859039, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -2211,7 +2211,7 @@ Animator:
   m_GameObject: {fileID: 1850000979}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c90d11bdaa16ae04694040c72710a4ee, type: 2}
+  m_Controller: {fileID: 9100000, guid: a2ace2f40b2317541b16e0d329df9204, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2412,7 +2412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.78, y: 0.44}
+  m_AnchoredPosition: {x: -6.78, y: 1.0526345}
   m_SizeDelta: {x: 10.24, y: 5.12}
   m_Pivot: {x: 0.68579435, y: 0.5091373}
 --- !u!114 &1850000990
@@ -2427,7 +2427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bafac42bca9334c83cdc274c439d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: JasonP1
+  nextSceneName: KruegerP1
   click: {fileID: 677732964}
 --- !u!1 &1856602484
 GameObject:
