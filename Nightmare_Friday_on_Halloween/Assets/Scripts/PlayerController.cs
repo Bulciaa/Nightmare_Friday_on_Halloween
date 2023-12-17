@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+// using.UnityEngine.Analytics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -113,6 +114,8 @@ public class PlayerController : MonoBehaviour
 
             transform.position = respawnPoint;
             LoseLife();
+
+		// AnalyticsResult analyticsResult = Analytics.CustomEvent("Gracz zginął");
         }
 
 
