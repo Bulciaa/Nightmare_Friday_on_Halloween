@@ -88392,7 +88392,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  nextLevelScene: JasonP1
+  nextLevelScene: Poziom3
   progressBar: {fileID: 1356298671}
   maxOrb: 6
   respaPoint: {fileID: 850154462}
@@ -88414,7 +88414,7 @@ Animator:
   m_GameObject: {fileID: 4209907725697400277}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c56c08a34151bf149b49252f93937408, type: 2}
+  m_Controller: {fileID: 9100000, guid: f576912e2d8b6294488dda1f9798a452, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

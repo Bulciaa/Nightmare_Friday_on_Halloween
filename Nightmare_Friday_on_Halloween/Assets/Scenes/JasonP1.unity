@@ -32753,7 +32753,7 @@ MonoBehaviour:
     m_Bits: 8
   nextLevelScene: KruegerP1
   progressBar: {fileID: 793206752}
-  maxOrb: 1
+  maxOrb: 8
   respaPoint: {fileID: 522227651}
   hearts:
   - {fileID: 281784009}

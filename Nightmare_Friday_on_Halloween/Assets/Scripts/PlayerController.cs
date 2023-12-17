@@ -67,15 +67,15 @@ public class PlayerController : MonoBehaviour
         if (direction == 0f)
         {
             animator.SetBool("isWalking", false);
-       //     idle.enabled = true;
-          //  walking.enabled = false;
+/*            idle.enabled = true;
+            walking.enabled = false;*/
         }
 
         else
         {
             animator.SetBool("isWalking", true);
-        //    idle.enabled = false;
-          //  walking.enabled = true;
+/*            idle.enabled = false;
+            walking.enabled = true;*/
         }
 
         if (direction > 0f)
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentLives <= 0)
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(6);
             Debug.Log("Game Over!");
         }
         else
