@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class ZarządzanieScenami : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public void PlaySound()
 {
 	
 	SceneManager.LoadScene(1);
+	Analytics.CustomEvent("startGame");
 }
 
 public void Wyjdz()
