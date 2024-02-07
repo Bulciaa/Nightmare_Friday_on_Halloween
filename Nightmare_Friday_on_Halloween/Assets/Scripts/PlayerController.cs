@@ -10,21 +10,35 @@ public class PlayerController : MonoBehaviour
 {
 
    	// public AudioSource walking;
-  //      public AudioSource idle;
+  	//public AudioSource idle;
 
-    public float speed = 5f;
+    	//public float speed = 5f;
 
-    public float jumpingPower = 16f;
-    private float direction = 0f;
-    private Rigidbody2D player;
+   	//public float jumpingPower = 16f;
+    	//private float direction = 0f;
+  	// private Rigidbody2D player;
+	//private bool isTouchingGround;
 
-    private bool isTouchingGround;
+	//public Transform groundCheck;
+    	//public float groundCheckRadius;
+    	//public LayerMask groundLayer;
+	
+	private float horizontal;
+    	[SerializeField] private float speed = 6f;
+    	[SerializeField] private float jumpingPower = 16f;
+    	private bool isFacingRight = true;
+
+	public float totalStamina;
+	public float stamina;
+	public GameObject staminaBar;
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+	
+	public Renderer objectRenderer;
 
     public Animator animator;
-
-    public Transform groundCheck;
-    public float groundCheckRadius;
-    public LayerMask groundLayer;
 
     public string nextLevelScene;
 
@@ -54,57 +68,91 @@ public class PlayerController : MonoBehaviour
     {
 
         animator = GetComponent<Animator>();
-        player = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
-
+	 objectRenderer = GetComponent<Renderer>();
+	
         UpdateUI();
     }
+	
+	void Awake()
+	{	
+		stamina = totalStamina;
+	}
 
     void Update()
     {
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        direction = Input.GetAxis("Horizontal");
+     	horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (direction == 0f)
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            animator.SetBool("isWalking", false);
-/*            idle.enabled = true;
-            walking.enabled = false;*/
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
-        else
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-            animator.SetBool("isWalking", true);
-/*            idle.enabled = false;
-            walking.enabled = true;*/
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if (direction > 0f)
-        {
-            player.velocity = new Vector2(direction * speed, player.velocity.y);
-            transform.localScale = new Vector2(0.65f, 0.65f);
-        }
-        else if (direction < 0f)
-        {
-            player.velocity = new Vector2(direction * speed, player.velocity.y);
-            transform.localScale = new Vector2(-0.65f, 0.65f);
-        }
-        else
-        {
-            player.velocity = new Vector2(0, player.velocity.y);
-        }
+        Flip();
 
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
-        {
-            player.velocity = new Vector2(player.velocity.x, jumpingPower);
-        }
-        // Sprawd , czy gracz zebrze  wymagan  ilo   punkt w
+        //if (direction == 0f)
+        //{
+         //   animator.SetBool("isWalking", false);
+       // }
+
+       // else
+        //{
+         //   animator.SetBool("isWalking", true);
+       // }
+
         if (score >= maxOrb && currentPortal == null)
         {
             SpawnPortal();
         }
-      
+	
+	if(Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+	{
+		speed = 12;
+		stamina -= 0.5f;
+	}
+		
+	else
+	{
+		speed = 6;
+	}
+	
+	if(stamina < 100 && !Input.GetKey(KeyCode.LeftShift))
+	{
+		stamina += 0.25f;
+	}
 
+	if(staminaBar != null)
+	{
+		staminaBar.transform.localScale = new Vector2(stamina / totalStamina, staminaBar.transform.localScale.y);
+	}
+	
+    }
+
+	 private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
+
+	private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -151,7 +199,7 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator DelayBeforeNextLevel()
     {
-        player.constraints = RigidbodyConstraints2D.FreezePosition;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(3f);
         LoadNextLevel();
     }
