@@ -31,12 +31,20 @@ public class PlayerController : MonoBehaviour
 	public float totalStamina;
 	public float stamina;
 	public GameObject staminaBar;
+	public GameObject staminaBackground;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 	
-	public Renderer objectRenderer;
+	public ParticleSystem particleSprint;
+	public ParticleSystem particleJump;
+	public SpriteRenderer spriteRenderer;
+	private float disappearSpeed = 0.8f;
+	private float appearSpeed = 2f;
+
+	public float minAlpha = 0.01f;
+	public float maxAlpha = 1f;
 
     public Animator animator;
 
@@ -66,11 +74,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
-	 objectRenderer = GetComponent<Renderer>();
 	
         UpdateUI();
     }
@@ -87,13 +93,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+		
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+		
         }
-
+		
+	
         Flip();
 
         //if (direction == 0f)
@@ -113,17 +122,45 @@ public class PlayerController : MonoBehaviour
 	
 	if(Input.GetKey(KeyCode.LeftShift) && stamina > 0)
 	{
+
+		particleSprint.Play();
+ 	Color objectColor = staminaBar.GetComponent<Renderer>().material.color;
+        objectColor.a += appearSpeed * Time.deltaTime;
+	objectColor.a = Mathf.Clamp(objectColor.a, minAlpha, maxAlpha);
+        staminaBar.GetComponent<Renderer>().material.color = objectColor;
+
+	Color barColor = staminaBackground.GetComponent<Renderer>().material.color;
+        barColor.a += appearSpeed * Time.deltaTime;
+	barColor.a = Mathf.Clamp(barColor.a, minAlpha, maxAlpha);
+        staminaBackground.GetComponent<Renderer>().material.color = barColor;
+		
 		speed = 12;
 		stamina -= 0.5f;
 	}
 		
 	else
-	{
+	{	
+		particleSprint.Stop();
+		
+
 		speed = 6;
 	}
 	
+	if(stamina == 100)
+	{
+		Color objectColor = staminaBar.GetComponent<Renderer>().material.color;
+        objectColor.a -= disappearSpeed * Time.deltaTime;
+	objectColor.a = Mathf.Clamp(objectColor.a, minAlpha, maxAlpha);
+        staminaBar.GetComponent<Renderer>().material.color = objectColor;
+
+	Color barColor = staminaBackground.GetComponent<Renderer>().material.color;
+        barColor.a -= disappearSpeed * Time.deltaTime;
+	barColor.a = Mathf.Clamp(barColor.a, minAlpha, maxAlpha);
+        staminaBackground.GetComponent<Renderer>().material.color = barColor;	
+	}
 	if(stamina < 100 && !Input.GetKey(KeyCode.LeftShift))
 	{
+		
 		stamina += 0.25f;
 	}
 
@@ -154,6 +191,14 @@ public class PlayerController : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+	
+void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Ground"))
+    {
+        particleJump.Play();
+	}
+}
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -195,6 +240,11 @@ public class PlayerController : MonoBehaviour
         {
             CollectBubble(collision.gameObject);
         }
+	
+	else if (collision.CompareTag("Heart"))
+	{
+		CollectHeart(collision.gameObject);
+	}
 
     }
     private IEnumerator DelayBeforeNextLevel()
@@ -220,6 +270,16 @@ public class PlayerController : MonoBehaviour
             hearts[currentLives].sprite = blackHeartSprite;
         }
     }
+
+	public void CollectHeart(GameObject heart)
+	{
+		if(currentLives < 3)
+		{ 
+			currentLives++;
+			UpdateUI();
+			Destroy(heart);
+		}
+	}
 
     private void UpdateUI()
     {
