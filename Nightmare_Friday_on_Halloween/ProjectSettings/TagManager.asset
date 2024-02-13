@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Ladder
   - Heart
+  - Water
+  - Jump
   layers:
   - Default
   - TransparentFX

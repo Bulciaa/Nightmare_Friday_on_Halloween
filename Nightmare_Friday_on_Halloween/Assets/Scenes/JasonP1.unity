@@ -46186,6 +46186,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1120683654}
   minAlpha: 0.01
   maxAlpha: 1
+  swimForce: 10
+  waterLevel: {fileID: 0}
   animator: {fileID: 876972649}
   nextLevelScene: KruegerP1
   progressBar: {fileID: 854995417}
@@ -64906,9 +64908,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1303440611}
   - component: {fileID: 1303440612}
+  - component: {fileID: 1303440613}
   m_Layer: 0
   m_Name: But
-  m_TagString: Untagged
+  m_TagString: Jump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64980,6 +64983,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1303440613
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303440610}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06454235, y: -0.02675414}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 1.44}
+    newSize: {x: 2.56, y: 1.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5721327, y: 0.7725034}
+  m_EdgeRadius: 0
 --- !u!1 &1304655336
 GameObject:
   m_ObjectHideFlags: 0
@@ -88997,7 +89026,7 @@ GameObject:
   - component: {fileID: 1765402777}
   m_Layer: 4
   m_Name: water
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89102,7 +89131,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.0060062557}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -89113,7 +89142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.0120124}
   m_EdgeRadius: 0
 --- !u!114 &1765402777
 MonoBehaviour:
@@ -107771,7 +107800,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 49.900024, y: -45.69995}
+  m_AnchoredPosition: {x: 49.899902, y: -45.69995}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1842139012067982975

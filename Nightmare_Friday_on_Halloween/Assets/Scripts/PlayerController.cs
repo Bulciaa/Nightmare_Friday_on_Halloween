@@ -49,10 +49,12 @@ public class PlayerController : MonoBehaviour
 	public float minAlpha = 0.01f;
 	public float maxAlpha = 1f;
 	
-	public float swimSpeed = 5f;
-	public float swimForce = 10f;
+	
+	public float swimForce = 30f;
    	public Transform waterLevel;
 	private bool isUnderwater;
+	
+	
 
     public Animator animator;
 
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour
     void Update()
    {
 
-	while (Input.GetKeyDown(KeyCode.Space) && isUnderwater)
+	if (Input.GetKeyDown(KeyCode.Space) && isUnderwater)
 	{
 
             rb.AddForce(Vector2.up * swimForce, ForceMode2D.Impulse);
@@ -268,6 +270,10 @@ void OnCollisionEnter2D(Collision2D collision)
 		isUnderwater = true;
 	}
 
+	else if (collision.CompareTag("Jump"))
+	{
+		Jumping(collision.gameObject);
+	}
 
     }
 
@@ -306,6 +312,26 @@ void OnCollisionEnter2D(Collision2D collision)
         }
     }
 
+public void Jumping(GameObject jumpBut)
+{
+	StartCoroutine(JumpingBooost(jumpBut));
+	
+}
+
+private IEnumerator JumpingBooost(GameObject jumpBut)
+{
+	jumpingPower = 25f;
+	
+	jumpBut.SetActive(false);
+	
+	yield return new WaitForSeconds(5f);
+	
+	jumpBut.SetActive(true);
+	
+	jumpingPower = 16f;
+	
+	
+}
 	public void CollectHeart(GameObject heart)
 	{
 		if(currentLives < 3)
