@@ -35,7 +35,7 @@ public class OxygenBarController : MonoBehaviour
         defaultBrightness = RenderSettings.ambientIntensity;
 
         // Ukryj overlay na pocz¹tku gry
-        screenOverlay.gameObject.SetActive(false);
+        //screenOverlay.gameObject.SetActive(false);
         StartCoroutine(UpdateOxygen());
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 // using.UnityEngine.Analytics;
 
 public class PlayerController : MonoBehaviour
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
 	//public Transform groundCheck;
     	//public float groundCheckRadius;
     	//public LayerMask groundLayer;
+	
+	public TMP_Text complitedText;
 	
 	private float horizontal;
     	[SerializeField] private float speed = 6f;
@@ -45,6 +48,11 @@ public class PlayerController : MonoBehaviour
 
 	public float minAlpha = 0.01f;
 	public float maxAlpha = 1f;
+	
+	public float swimSpeed = 5f;
+	public float swimForce = 10f;
+   	public Transform waterLevel;
+	private bool isUnderwater;
 
     public Animator animator;
 
@@ -77,7 +85,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         respawnPoint = respaPoint.position;
-	
+	isUnderwater = false;
         UpdateUI();
     }
 	
@@ -87,7 +95,16 @@ public class PlayerController : MonoBehaviour
 	}
 
     void Update()
-    {
+   {
+
+	while (Input.GetKeyDown(KeyCode.Space) && isUnderwater)
+	{
+
+            rb.AddForce(Vector2.up * swimForce, ForceMode2D.Impulse);
+	}
+
+	
+
      	horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -246,7 +263,25 @@ void OnCollisionEnter2D(Collision2D collision)
 		CollectHeart(collision.gameObject);
 	}
 
+	else if (collision.CompareTag("Water"))
+	{
+		isUnderwater = true;
+	}
+
+
     }
+
+	
+  void OnTriggerExit2D(Collider2D collision)
+{
+ 	if (collision.CompareTag("Water"))
+	{
+		isUnderwater = false;
+		Flip();
+	}
+	
+	
+}
     private IEnumerator DelayBeforeNextLevel()
     {
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
@@ -320,6 +355,7 @@ void OnCollisionEnter2D(Collision2D collision)
 
         if (orbCollected >= maxOrb && currentPortal == null)
         {
+		complitedText.gameObject.SetActive(true);
             SpawnPortal();
         }
     }
