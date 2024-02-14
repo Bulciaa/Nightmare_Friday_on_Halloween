@@ -3304,8 +3304,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 723325786}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: SetVolume
-        m_Mode: 0
+        m_MethodName: SetSFXVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3624,6 +3624,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 0bf0464bd6984e44fbf91f51c8f0c5bf, type: 2}
+  musicSlider: {fileID: 1993685606}
+  sfxSlider: {fileID: 638808062}
 --- !u!4 &723325787
 Transform:
   m_ObjectHideFlags: 0
@@ -4652,6 +4654,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: bf4869d980f9f594e916b091491a394d, type: 2}
+  musicSlider: {fileID: 1993685606}
+  sfxSlider: {fileID: 638808062}
 --- !u!1 &1046076028
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,7 +7450,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1585076836}
-  - component: {fileID: 1585076837}
   m_Layer: 0
   m_Name: SliderControlller
   m_TagString: Untagged
@@ -7469,19 +7472,6 @@ Transform:
   m_Father: {fileID: 1955621158}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1585076837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585076834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c2d8090365c7248abf692f553f1a09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider1: {fileID: 1993685606}
 --- !u!1 &1607065330
 GameObject:
   m_ObjectHideFlags: 0
@@ -8830,8 +8820,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1022710306}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: SetVolume
-        m_Mode: 0
+        m_MethodName: SetMusicVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
