@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/KruegerP1.unity
     guid: 484814dc550654841a4b3174f2dd2f36
   - enabled: 1
-    path: Assets/Scenes/Poziom3.unity
+    path: Assets/Scenes/Ostatni Poziom.unity
     guid: a3e4a28ffee6cfd47ab0992bc3a3abb3
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
