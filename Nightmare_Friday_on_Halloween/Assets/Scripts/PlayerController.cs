@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 	public TMP_Text complitedText;
 	
 	private float horizontal;
+	private float vertical;	
+
     	[SerializeField] private float speed = 6f;
     	[SerializeField] private float jumpingPower = 16f;
     	private bool isFacingRight = true;
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
 	public float maxAlpha = 1f;
 	
 	
-	public float swimForce = 30f;
+	public float swimForce = 40f;
    	public Transform waterLevel;
 	private bool isUnderwater;
 	
@@ -73,6 +75,9 @@ public class PlayerController : MonoBehaviour
     public Sprite blackHeartSprite;
     public Sprite redHeartSprite;
     private int currentLives = 3;
+
+	public GameObject jumpBoost;
+	
 
     public GameObject portalPrefab; // Reference to your portal prefab
     private GameObject currentPortal; // Instance of the portal in the scene
@@ -99,10 +104,13 @@ public class PlayerController : MonoBehaviour
     void Update()
    {
 
+		vertical = Input.GetAxisRaw("Vertical");		
+
 	if (Input.GetKeyDown(KeyCode.Space) && isUnderwater)
 	{
-
-            rb.AddForce(Vector2.up * swimForce, ForceMode2D.Impulse);
+	 	rb.velocity = new Vector2(vertical * speed, rb.velocity.x);
+           rb.AddForce(Vector2.up * swimForce, ForceMode2D.Impulse);	
+		
 	}
 
 	
@@ -192,6 +200,8 @@ public class PlayerController : MonoBehaviour
 
 	 private void FixedUpdate()
     {
+	
+
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
@@ -272,7 +282,9 @@ void OnCollisionEnter2D(Collision2D collision)
 
 	else if (collision.CompareTag("Jump"))
 	{
+		
 		Jumping(collision.gameObject);
+		JumpingBoot();
 	}
 
     }
@@ -314,8 +326,7 @@ void OnCollisionEnter2D(Collision2D collision)
 
 public void Jumping(GameObject jumpBut)
 {
-	StartCoroutine(JumpingBooost(jumpBut));
-	
+	StartCoroutine(JumpingBooost(jumpBut));	
 }
 
 private IEnumerator JumpingBooost(GameObject jumpBut)
@@ -326,11 +337,26 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
 	
 	yield return new WaitForSeconds(5f);
 	
+
 	jumpBut.SetActive(true);
 	
 	jumpingPower = 16f;
 	
 	
+}
+
+	public void JumpingBoot()
+{
+
+	StartCoroutine(JumpingIcon());
+	
+}
+
+	private IEnumerator JumpingIcon()
+{
+	jumpBoost.SetActive(true);
+	yield return new WaitForSeconds(5f);
+	jumpBoost.SetActive(false);
 }
 	public void CollectHeart(GameObject heart)
 	{
@@ -366,10 +392,23 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
             // Dodaj dodatkowe punkty do paska tlenu
             oxygenController.AddOxygenPoints(additionalOxygenPoints);
 
-            // Dodatkowe operacje (np. zniszcz obiekt "dodatkowyTlen")
-            Destroy(bubble);
+           StartCoroutine(RespawnBubble(bubble));
+            //Destroy(bubble);
         }
     }
+
+
+	private IEnumerator RespawnBubble(GameObject bubble)
+	{
+		bubble.SetActive(false);
+	
+	yield return new WaitForSeconds(5f);
+	
+
+	bubble.SetActive(true);
+	
+	
+	}
     private void CollectOrb(GameObject orb)
     {
         score++;

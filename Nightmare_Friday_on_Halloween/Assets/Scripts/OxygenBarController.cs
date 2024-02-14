@@ -53,8 +53,10 @@ public class OxygenBarController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
+	
             // Gracz opuœci³ obszar z wod¹
             isUnderwater = false;
+		UpdateOxygen();
         }
     }
 
@@ -87,7 +89,7 @@ public class OxygenBarController : MonoBehaviour
                     StartCoroutine(DarkenScreen());
                 }
             }
-            else if (!isUnderwater && oxygenSlider.value < 100f)
+            else if (!isUnderwater && oxygenSlider.value < 10f)
             {
                 if (isDarkened)
                 {
@@ -105,7 +107,7 @@ public class OxygenBarController : MonoBehaviour
                     SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
                 }
             }
-            else if (!isUnderwater && oxygenSlider.value >= 100f)
+            else if (!isUnderwater && oxygenSlider.value == 10f)
             {
                 SetOxygenBarVisibility(false); // Ukryj pasek tlenu, gdy osi¹gniêto pe³n¹ wartoœæ
             }
