@@ -3295,14 +3295,14 @@ MonoBehaviour:
   m_FillRect: {fileID: 794696887}
   m_HandleRect: {fileID: 1135352519}
   m_Direction: 0
-  m_MinValue: -60
-  m_MaxValue: 2
+  m_MinValue: -40
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 723325786}
+      - m_Target: {fileID: 1022710306}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
@@ -3594,53 +3594,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719997782}
   m_CullTransparentMesh: 1
---- !u!1 &723325785
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 723325787}
-  - component: {fileID: 723325786}
-  m_Layer: 0
-  m_Name: SFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &723325786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723325785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f8e107ca1530114fb281c614938875c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 0bf0464bd6984e44fbf91f51c8f0c5bf, type: 2}
-  musicSlider: {fileID: 1993685606}
-  sfxSlider: {fileID: 638808062}
---- !u!4 &723325787
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723325785}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.132379, y: -2.696458, z: 318.83267}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1274101590}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752041399
 GameObject:
   m_ObjectHideFlags: 0
@@ -4654,6 +4607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: bf4869d980f9f594e916b091491a394d, type: 2}
+  sfxMixer: {fileID: 24100000, guid: 0bf0464bd6984e44fbf91f51c8f0c5bf, type: 2}
   musicSlider: {fileID: 1993685606}
   sfxSlider: {fileID: 638808062}
 --- !u!1 &1046076028
@@ -5384,7 +5338,6 @@ Transform:
   - {fileID: 1046076030}
   - {fileID: 193614590}
   - {fileID: 101061708}
-  - {fileID: 723325787}
   m_Father: {fileID: 1955621158}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7441,37 +7394,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540284009}
   m_CullTransparentMesh: 1
---- !u!1 &1585076834
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1585076836}
-  m_Layer: 0
-  m_Name: SliderControlller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1585076836
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585076834}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.9373074, y: 10.541254, z: 279.15732}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1955621158}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607065330
 GameObject:
   m_ObjectHideFlags: 0
@@ -8588,7 +8510,6 @@ Transform:
   - {fileID: 2140625861}
   - {fileID: 107546237}
   - {fileID: 1274101590}
-  - {fileID: 1585076836}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8812,9 +8733,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1480486134}
   m_Direction: 0
   m_MinValue: -40
-  m_MaxValue: 2
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
