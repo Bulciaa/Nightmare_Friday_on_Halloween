@@ -11,15 +11,6 @@ public class ChasingEnemy : MonoBehaviour
    	 public Transform playerTransform;
    	 public bool isChasing;
     	 public float chaseDistance;
-	
-	private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Granica"))
-        {
-
-		Walking();
-        }
-    }
 
 	
 	void Update()
@@ -27,7 +18,7 @@ public class ChasingEnemy : MonoBehaviour
 
         	if (isChasing)
         	{
-		moveSpeed = 4;
+		moveSpeed = 6;
             		
             		if (transform.position.x > playerTransform.position.x)
             		{			
@@ -71,8 +62,8 @@ public class ChasingEnemy : MonoBehaviour
 	 
 }
 
-void Walking()
-	{
+		void Walking()
+		{
            	if (patrolDestination == 0)
             	{
                 transform.position = Vector2.MoveTowards(transform.position, patrolPoints[0].position, moveSpeed * Time.deltaTime);
@@ -94,6 +85,6 @@ void Walking()
                 }
 
        	   	}
-	}
+		}
 
 }
