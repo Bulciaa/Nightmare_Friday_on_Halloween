@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class TreeCutting : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TreeCutting : MonoBehaviour
     public GameObject buttonD;
     public AIScript opponentScript; // Referencja do skryptu przeciwnika
     public TMP_Text loseText;
+    public TMP_Text winText;
 
     private int score = 0;
     private bool lastKeyPressWasA = false;
@@ -57,6 +59,11 @@ public class TreeCutting : MonoBehaviour
                 if (score < opponentScript.GetScore()) // Jeœli wynik gracza jest mniejszy ni¿ przeciwnika
                 {
                     StartCoroutine(ShowLoseTextAfterDelay(1f)); // Wywo³aj metodê po 2 sekundach opóŸnienia
+                }
+
+                if (score > opponentScript.GetScore()) // Jeœli wynik gracza jest wiêkszy ni¿ przeciwnika
+                {
+                    StartCoroutine(ShowWinTextAfterDelay(1f)); // Wywo³aj metodê po 2 sekundach opóŸnienia
                 }
             }
 
@@ -109,5 +116,19 @@ public class TreeCutting : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         loseText.gameObject.SetActive(true); // Wyœwietl tekst "You lose" na ekranie gracza
+        yield return new WaitForSeconds(3f); // Odczekaj 3 sekundy
+
+        // Przekieruj gracza do sceny GameOver
+        SceneManager.LoadScene("GameOver");
+    }
+
+    IEnumerator ShowWinTextAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        winText.gameObject.SetActive(true); // Wyœwietl tekst "You win" na ekranie gracza
+        yield return new WaitForSeconds(3f); // Odczekaj 3 sekundy
+
+        // Przekieruj gracza do sceny MenuG³ówne
+        SceneManager.LoadScene("MenuG³ówne");
     }
 }
