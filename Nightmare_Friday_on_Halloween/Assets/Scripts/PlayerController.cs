@@ -77,14 +77,14 @@ public class PlayerController : MonoBehaviour
     private int currentLives = 3;
 
 	public GameObject jumpBoost;
-	
+	public GameObject loader;
+
+	public GameObject schody;
 	
 
     public GameObject portalPrefab; // Reference to your portal prefab
-    private GameObject currentPortal; // Instance of the portal in the scene
-    /*    public float delayBeforeNextLevel = 2f; // Delay in seconds before loading the next level
-
-        private bool isStopped = false;*/
+ 
+   
 
     public int additionalOxygenPoints = 5; // Liczba dodatkowych punkt w tlenu po zebraniu obiektu "Bubble"
 
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
          //   animator.SetBool("isWalking", true);
        // }
 
-        if (score >= maxOrb && currentPortal == null)
+        if (score >= maxOrb)
         {
             SpawnPortal();
         }
@@ -242,18 +242,19 @@ void OnCollisionEnter2D(Collision2D collision)
         }
 
 
-        if (collision.tag == "NextLevel" && currentPortal != null)
+        if (collision.tag == "NextLevel")
         {
-
-            StartCoroutine(DelayBeforeNextLevel());
+		LoadNextLevel();
+		loader.SetActive(true);
+            //StartCoroutine(DelayBeforeNextLevel());
 /*            // Zatrzymaj gracza
-            isStopped = true;
+            //isStopped = true;
 
             // Zatrzymaj gracza ustawiaj c pr dko   na zero
-            player.velocity = Vector2.zero;*/
+            //player.velocity = Vector2.zero;*/
 
-            // Invoke LoadNextLevel po 3 sekundach
-/*            Invoke("LoadNextLevel", delayBeforeNextLevel);*/
+            
+/*           // Invoke("LoadNextLevel", delayBeforeNextLevel);*/
         }
         else if (collision.tag == "PreviousLevel")
         {
@@ -294,6 +295,7 @@ void OnCollisionEnter2D(Collision2D collision)
 	collision.transform.parent = this.transform;
 		
 	}
+	
 
     }
 
@@ -314,12 +316,7 @@ void OnCollisionEnter2D(Collision2D collision)
 	
 	
 }
-    private IEnumerator DelayBeforeNextLevel()
-    {
-        rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        yield return new WaitForSeconds(3f);
-        LoadNextLevel();
-    }
+  
 
     public void LoseLife()
     {
@@ -432,7 +429,7 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
 
         Destroy(orb);
 
-        if (orbCollected >= maxOrb && currentPortal == null)
+        if (orbCollected >= maxOrb)
         {
 		complitedText.gameObject.SetActive(true);
             SpawnPortal();
@@ -440,25 +437,21 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
     }
     private void SpawnPortal()
     {
-        // Offset to start the raycast slightly above and to the side of the player
-        float portalSpawnOffsetX = (transform.localScale.x > 0f) ? 4f : -4f;
-        Vector3 raycastStart = transform.position + new Vector3(portalSpawnOffsetX, 0.5f, 0f);
-
-        // Raycast to check for ground beneath the spawn position
-        RaycastHit2D hit = Physics2D.Raycast(raycastStart, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
-
-        // If the ray hits something, set the portalSpawnPosition to the hit point plus an offset
-        Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 2.5f) : transform.position;
-
-        // Instantiate the portalPrefab at the determined position
-        currentPortal = Instantiate(portalPrefab, portalSpawnPosition, Quaternion.identity);
+	schody.SetActive(true);
+	
+        
+       // float portalSpawnOffsetX = (transform.localScale.x > 0f) ? 4f : -4f;
+        //Vector3 raycastStart = transform.position + new Vector3(portalSpawnOffsetX, 0.5f, 0f);
+        //RaycastHit2D hit = Physics2D.Raycast(raycastStart, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
+       // Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 2.5f) : transform.position;
+       // currentPortal = Instantiate(portalPrefab, portalSpawnPosition, Quaternion.identity);
     }
 
     private void LoadNextLevel()
     {
         if (!string.IsNullOrEmpty(nextLevelScene))
         {
-            Destroy(currentPortal);
+            
             SceneManager.LoadScene(nextLevelScene);
         }
 
