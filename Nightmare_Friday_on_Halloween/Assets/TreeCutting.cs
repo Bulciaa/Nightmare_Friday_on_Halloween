@@ -11,7 +11,7 @@ public class TreeCutting : MonoBehaviour
     public TMP_Text timeText;
     private int score = 0;
     private bool lastKeyPressWasA = false;
-    private float gameTime = 45f; // Czas gry w sekundach
+    private float gameTime = 10f; // Czas gry w sekundach
     private bool gameRunning = true;
 
     void Start()
@@ -30,6 +30,13 @@ public class TreeCutting : MonoBehaviour
             {
                 gameTime = 0;
                 gameRunning = false;
+
+                // ZnajdŸ obiekt AIScript i zatrzymaj naliczanie punktów
+                AIScript aiScript = FindObjectOfType<AIScript>();
+                if (aiScript != null)
+                {
+                    aiScript.StopScoreCounting();
+                }
             }
 
             UpdateTimeText();
