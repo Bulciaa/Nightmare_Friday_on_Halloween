@@ -9,7 +9,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-
+	public AudioSource underwater;
    	// public AudioSource walking;
   	//public AudioSource idle;
 
@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
     private int currentLives = 3;
 
 	public GameObject jumpBoost;
+	
 	
 
     public GameObject portalPrefab; // Reference to your portal prefab
@@ -278,6 +279,7 @@ void OnCollisionEnter2D(Collision2D collision)
 	else if (collision.CompareTag("Water"))
 	{
 		isUnderwater = true;
+		underwater.Play();
 	}
 
 	else if (collision.CompareTag("Jump"))
@@ -285,6 +287,12 @@ void OnCollisionEnter2D(Collision2D collision)
 		
 		Jumping(collision.gameObject);
 		JumpingBoot();
+	}
+
+	else if (collision.CompareTag("Platforma"))
+	{
+	collision.transform.parent = this.transform;
+		
 	}
 
     }
@@ -296,6 +304,12 @@ void OnCollisionEnter2D(Collision2D collision)
 	{
 		isUnderwater = false;
 		Flip();
+		underwater.Stop();
+	}
+	
+	else if (collision.CompareTag("Platforma"))
+	{
+		collision.transform.parent = null;
 	}
 	
 	

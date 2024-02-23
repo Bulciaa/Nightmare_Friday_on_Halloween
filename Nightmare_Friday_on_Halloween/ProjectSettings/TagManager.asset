@@ -13,6 +13,7 @@ TagManager:
   - Heart
   - Water
   - Jump
+  - Platforma
   layers:
   - Default
   - TransparentFX
