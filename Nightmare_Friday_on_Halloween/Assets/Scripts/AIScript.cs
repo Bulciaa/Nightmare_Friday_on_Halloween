@@ -32,4 +32,9 @@ public class AIScript : MonoBehaviour
     {
         gameRunning = false;
     }
+    // Metoda zwracaj¹ca aktualny wynik przeciwnika
+    public int GetScore()
+    {
+        return number;
+    }
 }

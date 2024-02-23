@@ -11,6 +11,8 @@ public class TreeCutting : MonoBehaviour
     public TMP_Text timeText;
     public GameObject buttonA;
     public GameObject buttonD;
+    public AIScript opponentScript; // Referencja do skryptu przeciwnika
+    public TMP_Text loseText;
 
     private int score = 0;
     private bool lastKeyPressWasA = false;
@@ -49,6 +51,12 @@ public class TreeCutting : MonoBehaviour
                 if (aiScript != null)
                 {
                     aiScript.StopScoreCounting();
+                }
+
+                // Sprawdzenie warunku przegranej po zakoñczeniu czasu
+                if (score < opponentScript.GetScore()) // Jeœli wynik gracza jest mniejszy ni¿ przeciwnika
+                {
+                    StartCoroutine(ShowLoseTextAfterDelay(1f)); // Wywo³aj metodê po 2 sekundach opóŸnienia
                 }
             }
 
@@ -95,5 +103,11 @@ public class TreeCutting : MonoBehaviour
     void UpdateTimeText()
     {
         timeText.text = "Time: " + Mathf.Round(gameTime).ToString();
+    }
+
+    IEnumerator ShowLoseTextAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        loseText.gameObject.SetActive(true); // Wyœwietl tekst "You lose" na ekranie gracza
     }
 }
