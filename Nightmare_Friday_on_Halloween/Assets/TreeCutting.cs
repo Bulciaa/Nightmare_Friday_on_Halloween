@@ -15,6 +15,8 @@ public class TreeCutting : MonoBehaviour
     public AIScript opponentScript; // Referencja do skryptu przeciwnika
     public TMP_Text loseText;
     public TMP_Text winText;
+    public GameObject karmelekGracza;
+
 
     private int score = 0;
     private bool lastKeyPressWasA = false;
@@ -30,7 +32,6 @@ public class TreeCutting : MonoBehaviour
 
         // Ustawienie kwadracika A wiêkszego ni¿ D na pocz¹tku gry
         buttonA.transform.localScale = originalSizeA * 1.2f;
-
 
         UpdateScoreText();
         UpdateTimeText();
@@ -100,6 +101,8 @@ public class TreeCutting : MonoBehaviour
     {
         score++;
         UpdateScoreText();
+
+        SpawnCandy();
     }
 
     void UpdateScoreText()
@@ -130,5 +133,11 @@ public class TreeCutting : MonoBehaviour
 
         // Przekieruj gracza do sceny MenuG³ówne
         SceneManager.LoadScene("MenuG³ówne");
+    }
+    void SpawnCandy()
+    {
+        // Instancjonuj prefab karmelka w pozycji startowej
+        GameObject candy = Instantiate(karmelekGracza, Vector3.zero, Quaternion.identity);
+
     }
 }
