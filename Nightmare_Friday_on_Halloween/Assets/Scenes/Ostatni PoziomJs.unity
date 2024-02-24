@@ -1153,7 +1153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -244.84999, y: -35.550003}
+  m_AnchoredPosition: {x: -310.34998, y: -35.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411046083
@@ -4425,7 +4425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -353.5, y: -35.550003}
+  m_AnchoredPosition: {x: -419, y: -35.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1864678127
@@ -5508,7 +5508,6 @@ MonoBehaviour:
   loseText: {fileID: 1928551239}
   winText: {fileID: 63448}
   karmelekGracza: {fileID: 2459214668903378843, guid: f2c569ddbe66a25468975c2429fef265, type: 3}
-  characterAnimator: {fileID: 628834500689973042}
 --- !u!4 &628834500715167486
 Transform:
   m_ObjectHideFlags: 0

@@ -119285,7 +119285,7 @@ MonoBehaviour:
   animator: {fileID: 4209907725697400281}
   nextLevelScene: Ostatni PoziomJs
   progressBar: {fileID: 1387061003241987213}
-  maxOrb: 2
+  maxOrb: 10
   respaPoint: {fileID: 850154462}
   hearts:
   - {fileID: 769907770684754496}
