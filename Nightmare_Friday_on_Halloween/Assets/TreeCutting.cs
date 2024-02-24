@@ -31,7 +31,7 @@ public class TreeCutting : MonoBehaviour
         originalSizeA = buttonA.transform.localScale;
         originalSizeD = buttonD.transform.localScale;
 
-        // Ustawienie kwadracika A wiêkszego ni¿ D na pocz¹tku gry
+        // Ustawienie kwadracika A wi kszego ni  D na pocz tku gry
         buttonA.transform.localScale = originalSizeA * 1.2f;
 
         UpdateScoreText();
@@ -50,22 +50,22 @@ public class TreeCutting : MonoBehaviour
                 gameTime = 0;
                 gameRunning = false;
 
-                // ZnajdŸ obiekt AIScript i zatrzymaj naliczanie punktów
+                // Znajd  obiekt AIScript i zatrzymaj naliczanie punkt w
                 AIScript aiScript = FindObjectOfType<AIScript>();
                 if (aiScript != null)
                 {
                     aiScript.StopScoreCounting();
                 }
 
-                // Sprawdzenie warunku przegranej po zakoñczeniu czasu
-                if (score < opponentScript.GetScore()) // Jeœli wynik gracza jest mniejszy ni¿ przeciwnika
+                // Sprawdzenie warunku przegranej po zako czeniu czasu
+                if (score < opponentScript.GetScore()) // Je li wynik gracza jest mniejszy ni  przeciwnika
                 {
-                    StartCoroutine(ShowLoseTextAfterDelay(1f)); // Wywo³aj metodê po 2 sekundach opóŸnienia
+                    StartCoroutine(ShowLoseTextAfterDelay(1f)); // Wywo aj metod  po 2 sekundach op nienia
                 }
 
-                if (score > opponentScript.GetScore()) // Jeœli wynik gracza jest wiêkszy ni¿ przeciwnika
+                if (score > opponentScript.GetScore()) // Je li wynik gracza jest wi kszy ni  przeciwnika
                 {
-                    StartCoroutine(ShowWinTextAfterDelay(1f)); // Wywo³aj metodê po 2 sekundach opóŸnienia
+                    StartCoroutine(ShowWinTextAfterDelay(1f)); // Wywo aj metod  po 2 sekundach op nienia
                 }
             }
 
@@ -77,7 +77,7 @@ public class TreeCutting : MonoBehaviour
                 IncreaseSize(buttonD);
                 IncreaseScore();
                 lastKeyPressWasA = true;
-                PlayCharacterAnimation();
+               // PlayCharacterAnimation();
             }
             else if (Input.GetKeyDown(KeyCode.D) && lastKeyPressWasA)
             {
@@ -85,7 +85,7 @@ public class TreeCutting : MonoBehaviour
                 IncreaseSize(buttonA);
                 IncreaseScore();
                 lastKeyPressWasA = false;
-                PlayCharacterAnimation();
+               // PlayCharacterAnimation();
             }
         }
     }
@@ -121,7 +121,7 @@ public class TreeCutting : MonoBehaviour
     IEnumerator ShowLoseTextAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        loseText.gameObject.SetActive(true); // Wyœwietl tekst "You lose" na ekranie gracza
+        loseText.gameObject.SetActive(true); // Wy wietl tekst "You lose" na ekranie gracza
         yield return new WaitForSeconds(3f); // Odczekaj 3 sekundy
 
         // Przekieruj gracza do sceny GameOver
@@ -131,11 +131,11 @@ public class TreeCutting : MonoBehaviour
     IEnumerator ShowWinTextAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        winText.gameObject.SetActive(true); // Wyœwietl tekst "You win" na ekranie gracza
+        winText.gameObject.SetActive(true); // Wy wietl tekst "You win" na ekranie gracza
         yield return new WaitForSeconds(3f); // Odczekaj 3 sekundy
 
-        // Przekieruj gracza do sceny MenuG³ówne
-        SceneManager.LoadScene("MenuG³ówne");
+        // Przekieruj gracza do sceny MenuG  wne
+        SceneManager.LoadScene(0);
     }
     void SpawnCandy()
     {
@@ -143,8 +143,8 @@ public class TreeCutting : MonoBehaviour
         GameObject candy = Instantiate(karmelekGracza, Vector3.zero, Quaternion.identity);
 
     }
-    void PlayCharacterAnimation()
-    {
-        characterAnimator.SetTrigger("JasonKarmelki"); // "Chop" to nazwa wyzwalacza w kontrolerze animacji
-    }
+ //   void PlayCharacterAnimation()
+  //  {
+   //     characterAnimator.SetTrigger("JasonKarmelki"); // "Chop" to nazwa wyzwalacza w kontrolerze animacji
+   // }
 }
