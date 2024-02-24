@@ -7,6 +7,8 @@ public class AIScript : MonoBehaviour
     private int number = 0;
     private bool gameRunning = true;
     public float speedCounting = 0.15f;
+    public GameObject karmelekAI;
+
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class AIScript : MonoBehaviour
         {
             number++;
             numberText.text = "Score: " + number.ToString();
+            SpawnCandy();
         }
     }
 
@@ -36,5 +39,11 @@ public class AIScript : MonoBehaviour
     public int GetScore()
     {
         return number;
+    }
+    void SpawnCandy()
+    {
+        // Instancjonuj prefab karmelka w pozycji startowej
+        GameObject candy = Instantiate(karmelekAI, Vector3.zero, Quaternion.identity);
+
     }
 }
