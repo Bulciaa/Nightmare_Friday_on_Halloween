@@ -6802,7 +6802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberText: {fileID: 746722913}
-  speedCounting: 0.125
+  speedCounting: 0.11
   karmelekAI: {fileID: 540335756859876281, guid: 605712117a7e0964699fdbe7913a1ced, type: 3}
 --- !u!95 &8060726495654278600
 Animator:
