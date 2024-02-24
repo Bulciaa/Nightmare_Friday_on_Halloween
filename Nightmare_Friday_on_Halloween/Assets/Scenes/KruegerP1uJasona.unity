@@ -119283,7 +119283,7 @@ MonoBehaviour:
   swimForce: 40
   waterLevel: {fileID: 1090271182}
   animator: {fileID: 4209907725697400281}
-  nextLevelScene: Ostatni Poziom
+  nextLevelScene: Ostatni PoziomJs
   progressBar: {fileID: 1387061003241987213}
   maxOrb: 2
   respaPoint: {fileID: 850154462}
