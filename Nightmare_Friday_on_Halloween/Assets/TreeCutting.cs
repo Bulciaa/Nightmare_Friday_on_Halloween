@@ -16,6 +16,7 @@ public class TreeCutting : MonoBehaviour
     public TMP_Text loseText;
     public TMP_Text winText;
     public GameObject karmelekGracza;
+    public Animator characterAnimator; // Dodany Animator dla postaci
 
 
     private int score = 0;
@@ -76,6 +77,7 @@ public class TreeCutting : MonoBehaviour
                 IncreaseSize(buttonD);
                 IncreaseScore();
                 lastKeyPressWasA = true;
+                PlayCharacterAnimation();
             }
             else if (Input.GetKeyDown(KeyCode.D) && lastKeyPressWasA)
             {
@@ -83,6 +85,7 @@ public class TreeCutting : MonoBehaviour
                 IncreaseSize(buttonA);
                 IncreaseScore();
                 lastKeyPressWasA = false;
+                PlayCharacterAnimation();
             }
         }
     }
@@ -139,5 +142,9 @@ public class TreeCutting : MonoBehaviour
         // Instancjonuj prefab karmelka w pozycji startowej
         GameObject candy = Instantiate(karmelekGracza, Vector3.zero, Quaternion.identity);
 
+    }
+    void PlayCharacterAnimation()
+    {
+        characterAnimator.SetTrigger("JasonKarmelki"); // "Chop" to nazwa wyzwalacza w kontrolerze animacji
     }
 }

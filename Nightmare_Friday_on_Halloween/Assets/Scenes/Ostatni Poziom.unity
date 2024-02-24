@@ -920,9 +920,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -2026240289
+  m_SortingLayer: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5508,6 +5508,7 @@ MonoBehaviour:
   loseText: {fileID: 1928551239}
   winText: {fileID: 63448}
   karmelekGracza: {fileID: 2459214668903378843, guid: f2c569ddbe66a25468975c2429fef265, type: 3}
+  characterAnimator: {fileID: 628834500689973042}
 --- !u!4 &628834500715167486
 Transform:
   m_ObjectHideFlags: 0
