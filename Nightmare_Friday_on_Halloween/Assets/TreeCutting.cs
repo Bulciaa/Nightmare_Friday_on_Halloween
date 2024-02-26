@@ -17,7 +17,6 @@ public class TreeCutting : MonoBehaviour
     public TMP_Text winText;
     public GameObject karmelekGracza;
 
-
     private int score = 0;
     private bool lastKeyPressWasA = false;
     public float gameTime = 30f; // Czas gry w sekundach
@@ -27,6 +26,7 @@ public class TreeCutting : MonoBehaviour
     private Vector3 originalSizeD;
     void Start()
     {
+        Time.timeScale = 0;
         originalSizeA = buttonA.transform.localScale;
         originalSizeD = buttonD.transform.localScale;
 
