@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-// using.UnityEngine.Analytics;
+using Random = UnityEngine.Random;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -81,9 +82,9 @@ public class PlayerController : MonoBehaviour
 
 	public GameObject schody;
 	
+	
+  
 
-    public GameObject portalPrefab; // Reference to your portal prefab
- 
    
 
     public int additionalOxygenPoints = 5; // Liczba dodatkowych punkt w tlenu po zebraniu obiektu "Bubble"
@@ -95,6 +96,8 @@ public class PlayerController : MonoBehaviour
         respawnPoint = respaPoint.position;
 	isUnderwater = false;
         UpdateUI();
+	
+	
     }
 	
 	void Awake()
@@ -102,8 +105,14 @@ public class PlayerController : MonoBehaviour
 		stamina = totalStamina;
 	}
 
+
+
+	
+
+
     void Update()
    {
+	
 
 		vertical = Input.GetAxisRaw("Vertical");		
 
@@ -225,8 +234,10 @@ public class PlayerController : MonoBehaviour
 void OnCollisionEnter2D(Collision2D collision)
 {
     if (collision.gameObject.CompareTag("Ground"))
-    {
-        particleJump.Play();
+    	{
+		
+        	particleJump.Play();
+
 	}
 }
 
@@ -281,6 +292,7 @@ void OnCollisionEnter2D(Collision2D collision)
 	{
 		isUnderwater = true;
 		underwater.Play();
+		
 	}
 
 	else if (collision.CompareTag("Jump"))
@@ -295,6 +307,8 @@ void OnCollisionEnter2D(Collision2D collision)
 	collision.transform.parent = this.transform;
 		
 	}
+
+	
 	
 
     }
@@ -307,6 +321,8 @@ void OnCollisionEnter2D(Collision2D collision)
 		isUnderwater = false;
 		Flip();
 		underwater.Stop();
+		
+		
 	}
 	
 	else if (collision.CompareTag("Platforma"))
@@ -394,6 +410,8 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
         }
     }
 
+
+
     private void CollectBubble(GameObject bubble)
     {
         OxygenBarController oxygenController = GetComponent<OxygenBarController>();
@@ -404,7 +422,7 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
             oxygenController.AddOxygenPoints(additionalOxygenPoints);
 
            StartCoroutine(RespawnBubble(bubble));
-            //Destroy(bubble);
+            //
         }
     }
 
