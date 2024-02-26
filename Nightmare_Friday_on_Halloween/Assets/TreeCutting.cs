@@ -20,7 +20,7 @@ public class TreeCutting : MonoBehaviour
 
     private int score = 0;
     private bool lastKeyPressWasA = false;
-    private float gameTime = 30f; // Czas gry w sekundach
+    public float gameTime = 30f; // Czas gry w sekundach
     private bool gameRunning = true;
 
     private Vector3 originalSizeA;
