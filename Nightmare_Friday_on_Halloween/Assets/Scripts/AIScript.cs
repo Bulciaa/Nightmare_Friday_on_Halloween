@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 
 public class AIScript : MonoBehaviour
@@ -12,12 +14,22 @@ public class AIScript : MonoBehaviour
 
     void Start()
     {
-        // Rozpocznij odliczanie punktów, ale tylko jeœli gra siê toczy
+        
+	
         if (gameRunning)
         {
+		StartCoroutine(Odliczanie());
             InvokeRepeating("IncreaseNumberValue", 0.5f, speedCounting);
+		
         }
     }
+
+	private IEnumerator Odliczanie()
+	{
+		StopScoreCounting();
+		yield return new WaitForSeconds(3f);
+		gameRunning = true;
+	}
 
     void IncreaseNumberValue()
     {
