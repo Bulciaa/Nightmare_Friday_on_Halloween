@@ -1304,7 +1304,6 @@ MonoBehaviour:
   TutorialCanvas: {fileID: 2096645946}
   treeCutting: {fileID: 1377181181}
   aiScript: {fileID: 1720890770}
-  countdownObject: {fileID: 1857463988}
 --- !u!1 &334097899
 GameObject:
   m_ObjectHideFlags: 0
@@ -6939,6 +6938,7 @@ GameObject:
   - component: {fileID: 1857463989}
   - component: {fileID: 1857463990}
   - component: {fileID: 1857463991}
+  - component: {fileID: 1857463992}
   m_Layer: 0
   m_Name: Odliczanie
   m_TagString: Untagged
@@ -6994,11 +6994,25 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: e11e8e601a370af49a3c902358ff04c1, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: e11e8e601a370af49a3c902358ff04c1, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1857463992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857463988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e1293d153efce4ba97958e7dc308cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  odlicz: {fileID: 1857463990}
 --- !u!1 &1861609846
 GameObject:
   m_ObjectHideFlags: 0
@@ -8308,6 +8322,18 @@ MonoBehaviour:
       - m_Target: {fileID: 321831086}
         m_TargetAssemblyTypeName: ExitTutorial, Assembly-CSharp
         m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1857463992}
+        m_TargetAssemblyTypeName: StartOdlicz, Assembly-CSharp
+        m_MethodName: RozpOdlicz
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

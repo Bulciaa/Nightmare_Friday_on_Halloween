@@ -9,9 +9,12 @@ public class ExitTutorial : MonoBehaviour
     public TreeCutting treeCutting; // Referencja do skryptu TreeCuttingGame
     public AIScript aiScript; // Referencja do skryptu TreeCuttingGame
 
+
+
     private void Start()
     {
         PauseGame();
+	
     }
 
     public void ExitTutorialCanvas()
@@ -41,5 +44,7 @@ public class ExitTutorial : MonoBehaviour
 
         Debug.Log("Game resumed");
     }
+
+	
 }
 
