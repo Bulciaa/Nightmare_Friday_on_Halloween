@@ -1304,7 +1304,7 @@ MonoBehaviour:
   TutorialCanvas: {fileID: 2096645946}
   treeCutting: {fileID: 1377181181}
   aiScript: {fileID: 1720890770}
-  odliczanieObject: {fileID: 1857463988}
+  countdownObject: {fileID: 1857463988}
 --- !u!1 &334097899
 GameObject:
   m_ObjectHideFlags: 0
@@ -6938,6 +6938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1857463989}
   - component: {fileID: 1857463990}
+  - component: {fileID: 1857463991}
   m_Layer: 0
   m_Name: Odliczanie
   m_TagString: Untagged
@@ -6983,6 +6984,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!111 &1857463991
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857463988}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: e11e8e601a370af49a3c902358ff04c1, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1861609846
 GameObject:
   m_ObjectHideFlags: 0

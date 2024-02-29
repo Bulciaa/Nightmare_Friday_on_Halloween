@@ -8,8 +8,7 @@ public class ExitTutorial : MonoBehaviour
     public GameObject TutorialCanvas;
     public TreeCutting treeCutting; // Referencja do skryptu TreeCuttingGame
     public AIScript aiScript; // Referencja do skryptu TreeCuttingGame
-    public GameObject odliczanieObject; // Referencja do obiektu "odliczanie"
-    private Animator odliczanieAnimator; // Animator obiektu "odliczanie"
+
     private void Start()
     {
         PauseGame();
@@ -17,8 +16,6 @@ public class ExitTutorial : MonoBehaviour
 
     public void ExitTutorialCanvas()
     {
-        odliczanieAnimator = odliczanieObject.GetComponent<Animator>();
-
         treeCutting.tutorialActive = false;
         aiScript.tutorialActive = false;
         TutorialCanvas.SetActive(false);
@@ -36,11 +33,12 @@ public class ExitTutorial : MonoBehaviour
     }
 
     public void ResumeGame()
-    {
-        odliczanieAnimator.SetTrigger("odlicz");
+    {   
         // Aktywuj skrypt lub obiekt z logik¹ gry
         treeCutting.enabled = true;
         aiScript.enabled = true;
+
+
         Debug.Log("Game resumed");
     }
 }
