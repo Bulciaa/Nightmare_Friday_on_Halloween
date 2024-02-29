@@ -1302,6 +1302,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialCanvas: {fileID: 2096645946}
+  treeCutting: {fileID: 1377181181}
+  aiScript: {fileID: 1720890770}
+  odliczanieObject: {fileID: 1857463988}
 --- !u!1 &334097899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &334097900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4996,6 +4999,7 @@ GameObject:
   - component: {fileID: 1371061385}
   - component: {fileID: 1371061384}
   - component: {fileID: 1371061383}
+  - component: {fileID: 1371061386}
   m_Layer: 5
   m_Name: D
   m_TagString: Untagged
@@ -5081,6 +5085,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371061381}
   m_CullTransparentMesh: 1
+--- !u!111 &1371061386
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371061381}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 743b58c5ac3c53244b3b31670084288b, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1377181175
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,6 +5269,8 @@ MonoBehaviour:
   winText: {fileID: 1441786640}
   karmelekGracza: {fileID: 2459214668903378843, guid: f2c569ddbe66a25468975c2429fef265, type: 3}
   gameTime: 30
+  TutorialCanvas: {fileID: 2096645946}
+  tutorialActive: 1
 --- !u!1 &1398900989
 GameObject:
   m_ObjectHideFlags: 0
@@ -6123,7 +6144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1666279930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6413,6 +6434,8 @@ MonoBehaviour:
   numberText: {fileID: 1479088188}
   speedCounting: 0.11
   karmelekAI: {fileID: 540335756859876281, guid: 605712117a7e0964699fdbe7913a1ced, type: 3}
+  TutorialCanvas: {fileID: 2096645946}
+  tutorialActive: 1
 --- !u!4 &1720890771
 Transform:
   m_ObjectHideFlags: 0
@@ -7566,7 +7589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1940477282
 RectTransform:
   m_ObjectHideFlags: 0

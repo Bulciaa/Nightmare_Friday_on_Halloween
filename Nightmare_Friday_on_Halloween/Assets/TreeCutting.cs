@@ -24,14 +24,14 @@ public class TreeCutting : MonoBehaviour
     public float gameTime = 30f; // Czas gry w sekundach
     private bool gameRunning = true;
 
+    public GameObject TutorialCanvas;
+    public bool tutorialActive = true; // Flaga informuj¹ca, czy tutorial jest aktywny
 
 
     private Vector3 originalSizeA;
     private Vector3 originalSizeD;
     void Start()
     {
-
-        Time.timeScale = 0;
         originalSizeA = buttonA.transform.localScale;
         originalSizeD = buttonD.transform.localScale;
 
@@ -40,7 +40,7 @@ public class TreeCutting : MonoBehaviour
 
         UpdateScoreText();
         UpdateTimeText();
-	StartCoroutine(Odliczanie());
+	    StartCoroutine(Odliczanie());
 	
     }
 
@@ -49,9 +49,9 @@ public class TreeCutting : MonoBehaviour
     void Update()
     {
 
-        if (gameRunning)
+        if (!tutorialActive && gameRunning)
         {
-		gameTime -= Time.deltaTime;
+		    gameTime -= Time.deltaTime;
 
             if (gameTime <= 0)
             {

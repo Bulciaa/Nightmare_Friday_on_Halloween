@@ -7,29 +7,29 @@ public class AIScript : MonoBehaviour
 {
     public TMP_Text numberText;
     private int number = 0;
-    private bool gameRunning = true;
+    private bool gameRunning = false;
     public float speedCounting = 0.15f;
     public GameObject karmelekAI;
 
-
+    public GameObject TutorialCanvas;
+    public bool tutorialActive = true;
     void Start()
-    {
-        
+    {  
 	
-        if (gameRunning)
+        if (!tutorialActive)
         {
-		StartCoroutine(Odliczanie());
-            InvokeRepeating("IncreaseNumberValue", 0.5f, speedCounting);
+		    StartCoroutine(Odliczanie());
+
 		
         }
     }
-
 	private IEnumerator Odliczanie()
 	{
 		StopScoreCounting();
 		yield return new WaitForSeconds(3f);
 		gameRunning = true;
-	}
+        InvokeRepeating("IncreaseNumberValue", 0.5f, speedCounting);
+    }
 
     void IncreaseNumberValue()
     {
