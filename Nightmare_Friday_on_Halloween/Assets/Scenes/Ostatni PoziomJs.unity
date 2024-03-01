@@ -2560,6 +2560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialCanvas: {fileID: 1038920045}
+  treeCutting: {fileID: 0}
+  aiScript: {fileID: 0}
 --- !u!1 &847239756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,7 +3140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1038920046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6735,6 +6737,8 @@ MonoBehaviour:
   winText: {fileID: 63448}
   karmelekGracza: {fileID: 2459214668903378843, guid: f2c569ddbe66a25468975c2429fef265, type: 3}
   gameTime: 30
+  TutorialCanvas: {fileID: 0}
+  tutorialActive: 1
 --- !u!4 &628834500715167486
 Transform:
   m_ObjectHideFlags: 0
@@ -8030,6 +8034,8 @@ MonoBehaviour:
   numberText: {fileID: 746722913}
   speedCounting: 0.11
   karmelekAI: {fileID: 540335756859876281, guid: 605712117a7e0964699fdbe7913a1ced, type: 3}
+  TutorialCanvas: {fileID: 0}
+  tutorialActive: 1
 --- !u!95 &8060726495654278600
 Animator:
   serializedVersion: 5
