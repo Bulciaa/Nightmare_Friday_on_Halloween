@@ -81,22 +81,25 @@ public class PlayerController : MonoBehaviour
 	public GameObject loader;
 
 	public GameObject schody;
-	
-	
-  
 
-   
+
+    public GameObject TutorialCanvas;
+    public bool tutorialActive = true;
+
 
     public int additionalOxygenPoints = 5; // Liczba dodatkowych punkt w tlenu po zebraniu obiektu "Bubble"
 
-    void Start()
+    public void Start()
     {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        respawnPoint = respaPoint.position;
-	isUnderwater = false;
-        UpdateUI();
-	
+        if (!tutorialActive)
+        {
+            animator = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody2D>();
+            respawnPoint = respaPoint.position;
+            isUnderwater = false;
+            UpdateUI();
+
+        }
 	
     }
 	

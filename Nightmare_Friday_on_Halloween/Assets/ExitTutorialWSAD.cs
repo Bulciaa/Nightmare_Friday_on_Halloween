@@ -5,29 +5,29 @@ using UnityEngine;
 public class ExitTutorialWSAD : MonoBehaviour
 {
     public GameObject TutorialCanvas;
-    // Start is called before the first frame update
+    public PlayerController playerController;
+
+    private bool tutorialActive = true;
     private void Start()
     {
-        PauseGame();
+        if (tutorialActive)
+        {
+            Time.timeScale = 0; 
+        }
     }
 
     public void ExitTutorialCanvas()
     {
-
         TutorialCanvas.SetActive(false);
+        tutorialActive = false;
+
+        playerController.Start();
         ResumeGame();
 
     }
-
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
-
     public void ResumeGame()
     {
         Time.timeScale = 1;
     }
-
 
 }
