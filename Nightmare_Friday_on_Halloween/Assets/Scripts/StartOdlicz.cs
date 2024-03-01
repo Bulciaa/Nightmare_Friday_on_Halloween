@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class StartOdlicz : MonoBehaviour
 {
-   public Animator odlicz;
+    public Animator odlicz;
+	public AudioSource countingdwonSound;
     void Start()
     {
         odlicz = GetComponent<Animator>();
-	odlicz.enabled = false;
+		countingdwonSound = GetComponent<AudioSource>();
+		odlicz.enabled = false;
+		countingdwonSound.enabled = false;
     }
 
    public void RozpOdlicz()
 	{
 		odlicz.enabled = true;
 		odlicz.Play("odliczanie");
+		countingdwonSound.enabled=true;
+		countingdwonSound.Play();
 	}
 }
