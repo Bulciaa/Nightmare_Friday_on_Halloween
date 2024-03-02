@@ -11,28 +11,15 @@ using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
 {
 	public AudioSource underwater;
-   	// public AudioSource walking;
-  	//public AudioSource idle;
 
-    	//public float speed = 5f;
-
-   	//public float jumpingPower = 16f;
-    	//private float direction = 0f;
-  	// private Rigidbody2D player;
-	//private bool isTouchingGround;
-
-	//public Transform groundCheck;
-    	//public float groundCheckRadius;
-    	//public LayerMask groundLayer;
-	
 	public TMP_Text complitedText;
 	
 	private float horizontal;
 	private float vertical;	
 
-    	[SerializeField] private float speed = 6f;
-    	[SerializeField] private float jumpingPower = 16f;
-    	private bool isFacingRight = true;
+    [SerializeField] private float speed = 6f;
+    [SerializeField] private float jumpingPower = 16f;
+    private bool isFacingRight = true;
 
 	public float totalStamina;
 	public float stamina;
@@ -57,7 +44,6 @@ public class PlayerController : MonoBehaviour
    	public Transform waterLevel;
 	private bool isUnderwater;
 	
-	
 
     public Animator animator;
 
@@ -81,7 +67,8 @@ public class PlayerController : MonoBehaviour
 	public GameObject loader;
 
 	public GameObject schody;
-
+    public GameObject portalPrefab;
+    private Vector3 portalPosition;
 
     public GameObject TutorialCanvas;
     public bool tutorialActive = true;
@@ -100,32 +87,26 @@ public class PlayerController : MonoBehaviour
             UpdateUI();
 
         }
-	
+        portalPrefab.SetActive(false);
+
     }
-	
-	void Awake()
+
+    void Awake()
 	{	
 		stamina = totalStamina;
 	}
 
 
-
-	
-
-
     void Update()
    {
-	
-
 		vertical = Input.GetAxisRaw("Vertical");		
 
-	if (Input.GetKeyDown(KeyCode.Space) && isUnderwater)
-	{
-	 	rb.velocity = new Vector2(vertical * speed, rb.velocity.x);
-           rb.AddForce(Vector2.up * swimForce, ForceMode2D.Impulse);	
+	    if (Input.GetKeyDown(KeyCode.Space) && isUnderwater)
+	    {
+	 	    rb.velocity = new Vector2(vertical * speed, rb.velocity.x);
+            rb.AddForce(Vector2.up * swimForce, ForceMode2D.Impulse);	
 		
-	}
-
+	    }
 	
 
      	horizontal = Input.GetAxisRaw("Horizontal");
@@ -160,61 +141,57 @@ public class PlayerController : MonoBehaviour
             SpawnPortal();
         }
 	
-	if(Input.GetKey(KeyCode.LeftShift) && stamina > 0)
-	{
+	    if(Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+	    {
+		    particleSprint.Play();
+ 	        Color objectColor = staminaBar.GetComponent<Renderer>().material.color;
+            objectColor.a += appearSpeed * Time.deltaTime;
+	        objectColor.a = Mathf.Clamp(objectColor.a, minAlpha, maxAlpha);
+            staminaBar.GetComponent<Renderer>().material.color = objectColor;
 
-		particleSprint.Play();
- 	Color objectColor = staminaBar.GetComponent<Renderer>().material.color;
-        objectColor.a += appearSpeed * Time.deltaTime;
-	objectColor.a = Mathf.Clamp(objectColor.a, minAlpha, maxAlpha);
-        staminaBar.GetComponent<Renderer>().material.color = objectColor;
+	        Color barColor = staminaBackground.GetComponent<Renderer>().material.color;
+            barColor.a += appearSpeed * Time.deltaTime;
+	        barColor.a = Mathf.Clamp(barColor.a, minAlpha, maxAlpha);
+            staminaBackground.GetComponent<Renderer>().material.color = barColor;
+		
+		    speed = 12;
+		    stamina -= 0.5f;
+	    }
+		
+	    else
+	    {	
+		    particleSprint.Stop();
 
-	Color barColor = staminaBackground.GetComponent<Renderer>().material.color;
-        barColor.a += appearSpeed * Time.deltaTime;
-	barColor.a = Mathf.Clamp(barColor.a, minAlpha, maxAlpha);
-        staminaBackground.GetComponent<Renderer>().material.color = barColor;
-		
-		speed = 12;
-		stamina -= 0.5f;
-	}
-		
-	else
-	{	
-		particleSprint.Stop();
-		
-
-		speed = 6;
-	}
+		    speed = 6;
+	    }
 	
-	if(stamina == 100)
-	{
-		Color objectColor = staminaBar.GetComponent<Renderer>().material.color;
-        objectColor.a -= disappearSpeed * Time.deltaTime;
-	objectColor.a = Mathf.Clamp(objectColor.a, minAlpha, maxAlpha);
-        staminaBar.GetComponent<Renderer>().material.color = objectColor;
+	    if(stamina == 100)
+	    {
+		    Color objectColor = staminaBar.GetComponent<Renderer>().material.color;
+            objectColor.a -= disappearSpeed * Time.deltaTime;
+	        objectColor.a = Mathf.Clamp(objectColor.a, minAlpha, maxAlpha);
+            staminaBar.GetComponent<Renderer>().material.color = objectColor;
 
-	Color barColor = staminaBackground.GetComponent<Renderer>().material.color;
-        barColor.a -= disappearSpeed * Time.deltaTime;
-	barColor.a = Mathf.Clamp(barColor.a, minAlpha, maxAlpha);
-        staminaBackground.GetComponent<Renderer>().material.color = barColor;	
-	}
-	if(stamina < 100 && !Input.GetKey(KeyCode.LeftShift))
-	{
-		
-		stamina += 0.25f;
-	}
+	        Color barColor = staminaBackground.GetComponent<Renderer>().material.color;
+            barColor.a -= disappearSpeed * Time.deltaTime;
+	        barColor.a = Mathf.Clamp(barColor.a, minAlpha, maxAlpha);
+            staminaBackground.GetComponent<Renderer>().material.color = barColor;	
+	    }
 
-	if(staminaBar != null)
-	{
-		staminaBar.transform.localScale = new Vector2(stamina / totalStamina, staminaBar.transform.localScale.y);
-	}
+	    if(stamina < 100 && !Input.GetKey(KeyCode.LeftShift))
+	    {
+		    stamina += 0.25f;
+	    }
+
+	    if(staminaBar != null)
+	    {
+		    staminaBar.transform.localScale = new Vector2(stamina / totalStamina, staminaBar.transform.localScale.y);
+	    }
 	
     }
 
-	 private void FixedUpdate()
+    private void FixedUpdate()
     {
-	
-
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
@@ -234,41 +211,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 	
-void OnCollisionEnter2D(Collision2D collision)
-{
-    if (collision.gameObject.CompareTag("Ground"))
-    	{
-		
-        	particleJump.Play();
-
-	}
-}
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            particleJump.Play();
+	    }
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-
             transform.position = respawnPoint;
             LoseLife();
 
-		// AnalyticsResult analyticsResult = Analytics.CustomEvent("Gracz zginął");
         }
 
 
         if (collision.tag == "NextLevel")
         {
-		LoadNextLevel();
-		loader.SetActive(true);
-            //StartCoroutine(DelayBeforeNextLevel());
-/*            // Zatrzymaj gracza
-            //isStopped = true;
+		    LoadNextLevel();
+		    loader.SetActive(true);
 
-            // Zatrzymaj gracza ustawiaj c pr dko   na zero
-            //player.velocity = Vector2.zero;*/
-
-            
-/*           // Invoke("LoadNextLevel", delayBeforeNextLevel);*/
         }
         else if (collision.tag == "PreviousLevel")
         {
@@ -286,55 +251,52 @@ void OnCollisionEnter2D(Collision2D collision)
             CollectBubble(collision.gameObject);
         }
 	
-	else if (collision.CompareTag("Heart"))
-	{
-		CollectHeart(collision.gameObject);
-	}
+	    else if (collision.CompareTag("Heart"))
+	    {
+		    CollectHeart(collision.gameObject);
+	    }
 
-	else if (collision.CompareTag("Water"))
-	{
-		isUnderwater = true;
-		underwater.Play();
+	    else if (collision.CompareTag("Water"))
+	    {
+		    isUnderwater = true;
+		    underwater.Play();
 		
-	}
+	    }
 
-	else if (collision.CompareTag("Jump"))
-	{
+	    else if (collision.CompareTag("Jump"))
+	    {
 		
-		Jumping(collision.gameObject);
-		JumpingBoot();
-	}
+		    Jumping(collision.gameObject);
+		    JumpingBoot();
+	    }
 
-	else if (collision.CompareTag("Platforma"))
-	{
-	collision.transform.parent = this.transform;
+	    else if (collision.CompareTag("Platforma"))
+	    {
+	        collision.transform.parent = this.transform;
 		
-	}
-
-	
-	
+	    }
 
     }
 
 	
-  void OnTriggerExit2D(Collider2D collision)
-{
- 	if (collision.CompareTag("Water"))
-	{
-		isUnderwater = false;
-		Flip();
-		underwater.Stop();
+    void OnTriggerExit2D(Collider2D collision)
+    {
+ 	    if (collision.CompareTag("Water"))
+	    {
+		    isUnderwater = false;
+		    Flip();
+		    underwater.Stop();
 		
 		
-	}
+	    }
 	
-	else if (collision.CompareTag("Platforma"))
-	{
-		collision.transform.parent = null;
-	}
+	    else if (collision.CompareTag("Platforma"))
+	    {
+		    collision.transform.parent = null;
+	    }
 	
 	
-}
+    }
   
 
     public void LoseLife()
@@ -354,40 +316,40 @@ void OnCollisionEnter2D(Collision2D collision)
         }
     }
 
-public void Jumping(GameObject jumpBut)
-{
-	StartCoroutine(JumpingBooost(jumpBut));	
-}
+    public void Jumping(GameObject jumpBut)
+    {
+	    StartCoroutine(JumpingBooost(jumpBut));	
+    }
 
-private IEnumerator JumpingBooost(GameObject jumpBut)
-{
-	jumpingPower = 25f;
+    private IEnumerator JumpingBooost(GameObject jumpBut)
+    {
+	    jumpingPower = 25f;
 	
-	jumpBut.SetActive(false);
+	    jumpBut.SetActive(false);
 	
-	yield return new WaitForSeconds(5f);
+	    yield return new WaitForSeconds(5f);
 	
 
-	jumpBut.SetActive(true);
+	    jumpBut.SetActive(true);
 	
-	jumpingPower = 16f;
+	    jumpingPower = 16f;
 	
 	
-}
+    }
 
 	public void JumpingBoot()
-{
+    {
 
-	StartCoroutine(JumpingIcon());
+	    StartCoroutine(JumpingIcon());
 	
-}
+    }
 
 	private IEnumerator JumpingIcon()
-{
-	jumpBoost.SetActive(true);
-	yield return new WaitForSeconds(5f);
-	jumpBoost.SetActive(false);
-}
+    {
+	    jumpBoost.SetActive(true);
+	    yield return new WaitForSeconds(5f);
+	    jumpBoost.SetActive(false);
+    }
 	public void CollectHeart(GameObject heart)
 	{
 		if(currentLives < 3)
@@ -434,10 +396,10 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
 	{
 		bubble.SetActive(false);
 	
-	yield return new WaitForSeconds(5f);
+	    yield return new WaitForSeconds(5f);
 	
 
-	bubble.SetActive(true);
+	    bubble.SetActive(true);
 	
 	
 	}
@@ -449,25 +411,34 @@ private IEnumerator JumpingBooost(GameObject jumpBut)
         orbCollected++;
 
         Destroy(orb);
-
-        if (orbCollected >= maxOrb)
+        if (orbCollected >= maxOrb && portalPosition == Vector3.zero)
         {
-		complitedText.gameObject.SetActive(true);
+            // Jeśli portal jeszcze nie istnieje, zapisz pozycję portalu
+            Vector3 forwardDirection = transform.right;
+            portalPosition = transform.position + forwardDirection * 2f; // Przykładowe przesunięcie portalu względem gracza
+
+        }
+        if (orbCollected >= maxOrb && portalPosition != Vector3.zero)
+        {
+		    complitedText.gameObject.SetActive(true);
             SpawnPortal();
         }
     }
     private void SpawnPortal()
     {
-	schody.SetActive(true);
-	
-        
-       // float portalSpawnOffsetX = (transform.localScale.x > 0f) ? 4f : -4f;
-        //Vector3 raycastStart = transform.position + new Vector3(portalSpawnOffsetX, 0.5f, 0f);
-        //RaycastHit2D hit = Physics2D.Raycast(raycastStart, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
-       // Vector3 portalSpawnPosition = hit ? hit.point + new Vector2(0f, 2.5f) : transform.position;
-       // currentPortal = Instantiate(portalPrefab, portalSpawnPosition, Quaternion.identity);
-    }
+        portalPrefab.SetActive(true);
+        /*	    schody.SetActive(true);*/
 
+        // Utwórz portal na wcześniej zapisanej pozycji
+        GameObject portal = Instantiate(portalPrefab, portalPosition, Quaternion.identity);
+
+        // Obróć portal w kierunku patrzenia gracza
+        Vector3 directionToPlayer = transform.right;
+        portal.transform.right = directionToPlayer;
+
+        portalPosition = Vector3.zero; // Zresetuj pozycję portalu, aby nie aktywować go ponownie
+
+    }
     private void LoadNextLevel()
     {
         if (!string.IsNullOrEmpty(nextLevelScene))
