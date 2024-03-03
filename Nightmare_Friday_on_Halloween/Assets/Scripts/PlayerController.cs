@@ -136,10 +136,10 @@ public class PlayerController : MonoBehaviour
          //   animator.SetBool("isWalking", true);
        // }
 
-        if (score >= maxOrb)
+/*        if (score >= maxOrb)
         {
             SpawnPortal();
-        }
+        }*/
 	
 	    if(Input.GetKey(KeyCode.LeftShift) && stamina > 0)
 	    {
@@ -414,17 +414,17 @@ public class PlayerController : MonoBehaviour
         if (orbCollected >= maxOrb && portalPosition == Vector3.zero)
         {
             // Jeśli portal jeszcze nie istnieje, zapisz pozycję portalu
-            Vector3 forwardDirection = transform.right;
-            portalPosition = transform.position + forwardDirection * 2f; // Przykładowe przesunięcie portalu względem gracza
+            Vector3 forwardDirection = transform.forward;
+            portalPosition = transform.position + forwardDirection * 3f; // Przykładowe przesunięcie portalu względem gracza
 
         }
         if (orbCollected >= maxOrb && portalPosition != Vector3.zero)
         {
 		    complitedText.gameObject.SetActive(true);
-            SpawnPortal();
+            SpawnPortal(transform.forward);
         }
     }
-    private void SpawnPortal()
+    private void SpawnPortal(Vector3 directionToPlayer)
     {
         portalPrefab.SetActive(true);
         /*	    schody.SetActive(true);*/
@@ -433,8 +433,7 @@ public class PlayerController : MonoBehaviour
         GameObject portal = Instantiate(portalPrefab, portalPosition, Quaternion.identity);
 
         // Obróć portal w kierunku patrzenia gracza
-        Vector3 directionToPlayer = transform.right;
-        portal.transform.right = directionToPlayer;
+        portal.transform.forward = directionToPlayer;
 
         portalPosition = Vector3.zero; // Zresetuj pozycję portalu, aby nie aktywować go ponownie
 
