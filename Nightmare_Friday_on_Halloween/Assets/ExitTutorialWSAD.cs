@@ -6,41 +6,45 @@ public class ExitTutorialWSAD : MonoBehaviour
 {
     public GameObject TutorialCanvas;
     public PlayerController playerController;
-
-    public GameObject FindText;
+    public GameObject textFind;
+    public GameObject tutorialScreen;
 
     private bool tutorialActive = true;
+
     private void Start()
     {
-        StartCoroutine(ShowTutorialSequence());
 
-        if (tutorialActive)
+        StartCoroutine(ShowTextAnimation());
+    }
+
+    private IEnumerator ShowTextAnimation()
+    {
+
+        tutorialScreen.SetActive(false);
+        textFind.SetActive(true);
+        yield return new WaitForSeconds(6f);
+        textFind.SetActive(false);
+        tutorialScreen.SetActive(true);
+        tutorialActive = true; // Set tutorialActive to true after showing the second object
+
+        if (!tutorialActive)
         {
-            Time.timeScale = 0; 
+            Time.timeScale = 0;
         }
     }
-    IEnumerator ShowTutorialSequence()
-    {
-        // Poka¿ animacjê "Find"
-        FindText.SetActive(true);
-        yield return new WaitForSeconds(6f); // Czas trwania animacji "Find"
 
-        // Poka¿ "CanvasTutorial" i wy³¹cz "Find"
-        FindText.SetActive(false);
-        TutorialCanvas.SetActive(true);
-    }
     public void ExitTutorialCanvas()
     {
         TutorialCanvas.SetActive(false);
         tutorialActive = false;
 
-        playerController.Start();
-        ResumeGame();
+        playerController.enabled = true; // Enable player controller
 
+        ResumeGame();
     }
+
     public void ResumeGame()
     {
         Time.timeScale = 1;
     }
-
 }
