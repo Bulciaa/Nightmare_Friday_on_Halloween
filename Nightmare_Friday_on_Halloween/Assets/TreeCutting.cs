@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.SceneManagement;
 
+
 public class TreeCutting : MonoBehaviour
 {
     public TMP_Text scoreText;
@@ -16,12 +17,16 @@ public class TreeCutting : MonoBehaviour
     public TMP_Text loseText;
     public TMP_Text winText;
     public GameObject karmelekGracza;
-
+	
 
     private int score = 0;
     private bool lastKeyPressWasA = false;
-    private float gameTime = 30f; // Czas gry w sekundach
+    public float gameTime = 30f; // Czas gry w sekundach
     private bool gameRunning = true;
+
+    public GameObject TutorialCanvas;
+    public bool tutorialActive = true; // Flaga informuj¹ca, czy tutorial jest aktywny
+
 
     private Vector3 originalSizeA;
     private Vector3 originalSizeD;
@@ -35,14 +40,18 @@ public class TreeCutting : MonoBehaviour
 
         UpdateScoreText();
         UpdateTimeText();
+	    StartCoroutine(Odliczanie());
+	
     }
+
+	
 
     void Update()
     {
 
-        if (gameRunning)
+        if (!tutorialActive && gameRunning)
         {
-            gameTime -= Time.deltaTime;
+		    gameTime -= Time.deltaTime;
 
             if (gameTime <= 0)
             {
@@ -69,7 +78,7 @@ public class TreeCutting : MonoBehaviour
             }
 
             UpdateTimeText();
-
+	
             if (Input.GetKeyDown(KeyCode.A) && !lastKeyPressWasA)
             {
                 DecreaseSize(buttonA);
@@ -88,6 +97,14 @@ public class TreeCutting : MonoBehaviour
             }
         }
     }
+
+	private IEnumerator Odliczanie()
+	{
+		gameRunning = false;
+		yield return new WaitForSeconds(4f);
+		gameRunning = true;
+	}	
+
     void IncreaseSize(GameObject button)
     {
         button.transform.localScale = originalSizeA * 1.2f;
@@ -98,6 +115,7 @@ public class TreeCutting : MonoBehaviour
         button.transform.localScale = originalSizeA * 0.8f;
     }
 
+		
 
     void IncreaseScore()
     {
