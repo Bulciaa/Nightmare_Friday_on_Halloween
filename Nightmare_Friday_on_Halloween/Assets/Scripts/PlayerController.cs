@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
 	public float minAlpha = 0.01f;
 	public float maxAlpha = 1f;
 	
-	
+	public string nameLevel;	
+
 	public float swimForce = 40f;
    	public Transform waterLevel;
 	private bool isUnderwater;
@@ -306,7 +307,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentLives <= 0)
         {
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(nameLevel);
             Debug.Log("Game Over!");
         }
         else
