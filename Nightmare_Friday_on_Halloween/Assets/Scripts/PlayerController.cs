@@ -421,9 +421,17 @@ public class PlayerController : MonoBehaviour
         if (orbCollected >= maxOrb && portalPosition != Vector3.zero)
         {
 		    complitedText.gameObject.SetActive(true);
-            SpawnPortal(transform.forward);
+			StartCoroutine(ZespawnujPortal());
+            
         }
     }
+
+	private IEnumerator ZespawnujPortal()
+	{
+		yield return new WaitForSeconds(1f);
+		SpawnPortal(transform.forward);
+	}
+
     private void SpawnPortal(Vector3 directionToPlayer)
     {
         portalPrefab.SetActive(true);
