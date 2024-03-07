@@ -5,6 +5,7 @@ using UnityEngine.Video;
 public class SceneTransition : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
+	public int number;
 
     private void Start()
     {
@@ -14,6 +15,6 @@ public class SceneTransition : MonoBehaviour
 
     private void LoadNextScene(VideoPlayer vp)
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(number);
     }
 }

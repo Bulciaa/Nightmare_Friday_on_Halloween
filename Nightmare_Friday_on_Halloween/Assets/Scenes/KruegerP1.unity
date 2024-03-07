@@ -121488,7 +121488,7 @@ MonoBehaviour:
   swimForce: 40
   waterLevel: {fileID: 1090271182}
   animator: {fileID: 4209907725697400281}
-  nextLevelScene: JasonP1uKrugera
+  nextLevelScene: KrugerP2Cutscene
   progressBar: {fileID: 1387061003241987213}
   maxOrb: 10
   respaPoint: {fileID: 850154462}
@@ -121501,6 +121501,7 @@ MonoBehaviour:
   jumpBoost: {fileID: 1387061003854261295}
   loader: {fileID: 1730153203}
   schody: {fileID: 1044621261}
+  portalPrefab: {fileID: 0}
   TutorialCanvas: {fileID: 0}
   tutorialActive: 1
   additionalOxygenPoints: 0

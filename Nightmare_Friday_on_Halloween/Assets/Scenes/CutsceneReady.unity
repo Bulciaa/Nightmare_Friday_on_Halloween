@@ -1042,6 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 942696709}
+  number: 2
 --- !u!328 &942696709
 VideoPlayer:
   m_ObjectHideFlags: 0
