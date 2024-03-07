@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/JasonP1uKrugera.unity
     guid: 5683add5d8a667d439bb1c4b2a9466c9
   - enabled: 1
-    path: Assets/Scenes/Ostatni PoziomJs.unity
+    path: Assets/Scenes/CutscenkaOst.unity
     guid: a3e4a28ffee6cfd47ab0992bc3a3abb3
   - enabled: 1
     path: Assets/Scenes/Ostatni PoziomKr.unity
