@@ -30675,7 +30675,7 @@ MonoBehaviour:
   opponentScript: {fileID: 1720890770}
   loseText: {fileID: 845191477}
   winText: {fileID: 1441786640}
-  karmelekGracza: {fileID: 832674364}
+  karmelekGracza: {fileID: 2459214668903378843, guid: f2c569ddbe66a25468975c2429fef265, type: 3}
   gameTime: 30
   TutorialCanvas: {fileID: 2096645946}
   tutorialActive: 1

@@ -17,7 +17,7 @@ public class TreeCutting : MonoBehaviour
     public TMP_Text loseText;
     public TMP_Text winText;
     public GameObject karmelekGracza;
-	
+
 
     private int score = 0;
     private bool lastKeyPressWasA = false;
@@ -40,18 +40,18 @@ public class TreeCutting : MonoBehaviour
 
         UpdateScoreText();
         UpdateTimeText();
-	    StartCoroutine(Odliczanie());
-	
+        StartCoroutine(Odliczanie());
+
     }
 
-	
+
 
     void Update()
     {
 
         if (!tutorialActive && gameRunning)
         {
-		    gameTime -= Time.deltaTime;
+            gameTime -= Time.deltaTime;
 
             if (gameTime <= 0)
             {
@@ -78,7 +78,7 @@ public class TreeCutting : MonoBehaviour
             }
 
             UpdateTimeText();
-	
+
             if (Input.GetKeyDown(KeyCode.A) && !lastKeyPressWasA)
             {
                 DecreaseSize(buttonA);
@@ -98,12 +98,12 @@ public class TreeCutting : MonoBehaviour
         }
     }
 
-	private IEnumerator Odliczanie()
-	{
-		gameRunning = false;
-		yield return new WaitForSeconds(4f);
-		gameRunning = true;
-	}	
+    private IEnumerator Odliczanie()
+    {
+        gameRunning = false;
+        yield return new WaitForSeconds(4f);
+        gameRunning = true;
+    }
 
     void IncreaseSize(GameObject button)
     {
@@ -115,7 +115,7 @@ public class TreeCutting : MonoBehaviour
         button.transform.localScale = originalSizeA * 0.8f;
     }
 
-		
+
 
     void IncreaseScore()
     {
@@ -160,4 +160,5 @@ public class TreeCutting : MonoBehaviour
         GameObject candy = Instantiate(karmelekGracza, Vector3.zero, Quaternion.identity);
 
     }
+
 }
