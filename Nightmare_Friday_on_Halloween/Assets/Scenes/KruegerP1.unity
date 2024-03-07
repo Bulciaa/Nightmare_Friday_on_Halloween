@@ -19973,7 +19973,7 @@ GameObject:
   - component: {fileID: 440868709}
   m_Layer: 0
   m_Name: Girl_Chibi
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73089,7 +73089,7 @@ GameObject:
   - component: {fileID: 1586051171}
   m_Layer: 0
   m_Name: Girl_Chibi
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121712,7 +121712,7 @@ MonoBehaviour:
   swimForce: 40
   waterLevel: {fileID: 1090271182}
   animator: {fileID: 4209907725697400281}
-  nextLevelScene: JasonP1uKrugera
+  nextLevelScene: KrugerP2
   progressBar: {fileID: 1387061003241987213}
   maxOrb: 10
   respawnPoint: {x: 0, y: 0, z: 0}
