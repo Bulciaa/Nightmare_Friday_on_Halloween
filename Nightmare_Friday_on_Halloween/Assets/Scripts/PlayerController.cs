@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     public int maxOrb = 10;
     private int orbCollected = 0;
 
-    private Vector3 respawnPoint;
+    public Vector3 respawnPoint;
     public Transform respaPoint;
 
     [SerializeField]
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject loader;
 
 	public GameObject schody;
-    public GameObject portalPrefab;
+   public GameObject portalPrefab;
     private Vector3 portalPosition;
 
     public GameObject TutorialCanvas;
