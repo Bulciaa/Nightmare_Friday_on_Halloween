@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
 	public float minAlpha = 0.01f;
 	public float maxAlpha = 1f;
 	
-	
+	public string nameLevel;	
+
 	public float swimForce = 40f;
    	public Transform waterLevel;
 	private bool isUnderwater;
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
     public int maxOrb = 10;
     private int orbCollected = 0;
 
-    private Vector3 respawnPoint;
+    public Vector3 respawnPoint;
     public Transform respaPoint;
 
     [SerializeField]
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject loader;
 
 	public GameObject schody;
-    public GameObject portalPrefab;
+   public GameObject portalPrefab;
     private Vector3 portalPosition;
 
     public GameObject TutorialCanvas;
@@ -306,7 +307,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentLives <= 0)
         {
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(nameLevel);
             Debug.Log("Game Over!");
         }
         else
@@ -421,9 +422,17 @@ public class PlayerController : MonoBehaviour
         if (orbCollected >= maxOrb && portalPosition != Vector3.zero)
         {
 		    complitedText.gameObject.SetActive(true);
-            SpawnPortal(transform.forward);
+			StartCoroutine(ZespawnujPortal());
+            
         }
     }
+
+	private IEnumerator ZespawnujPortal()
+	{
+		yield return new WaitForSeconds(1f);
+		SpawnPortal(transform.forward);
+	}
+
     private void SpawnPortal(Vector3 directionToPlayer)
     {
         portalPrefab.SetActive(true);
