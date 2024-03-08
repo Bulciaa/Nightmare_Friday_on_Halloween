@@ -426,14 +426,14 @@ public class PlayerController : MonoBehaviour
 	}
 
         Destroy(orb);
-        if (orbCollected >= maxOrb && portalPosition == Vector3.zero)
+        if (orbCollected == maxOrb && portalPosition == Vector3.zero)
         {
             // Jeśli portal jeszcze nie istnieje, zapisz pozycję portalu
             Vector3 forwardDirection = transform.forward;
             portalPosition = transform.position + forwardDirection * 3f; // Przykładowe przesunięcie portalu względem gracza
 
         }
-        if (orbCollected >= maxOrb && portalPosition != Vector3.zero)
+        if (orbCollected == maxOrb && portalPosition != Vector3.zero)
         {
 		    complitedText.gameObject.SetActive(true);
 			StartCoroutine(ZespawnujPortal());
