@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474a606f4cbf84c439d57cb2d480b4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: JasonP1
+  nextSceneName: CutscenkaReady
 --- !u!114 &153155002
 MonoBehaviour:
   m_ObjectHideFlags: 0
