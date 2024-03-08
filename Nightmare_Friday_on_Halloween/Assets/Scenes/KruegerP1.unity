@@ -98812,7 +98812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialCanvas: {fileID: 3207931420323308243}
-  playerController: {fileID: 0}
+  playerController: {fileID: 4209907725697400280}
   textFind: {fileID: 3207931420211435363}
   tutorialScreen: {fileID: 3207931418794730445}
 --- !u!224 &3207931418956687934
