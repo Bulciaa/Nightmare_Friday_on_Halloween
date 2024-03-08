@@ -10363,8 +10363,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.492
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.84
+  m_Color: {r: 0.90008867, g: 0.7490566, b: 1, a: 1}
+  m_Intensity: 0.99
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000a1c9202507932eeddf063a8791b52191
@@ -10415,7 +10415,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 3.51
-  m_PointLightOuterRadius: 7.48
+  m_PointLightOuterRadius: 8.95
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -12668,7 +12668,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655425994}
-  m_LocalRotation: {x: 0, y: -0, z: -0.9924597, w: 0.122571535}
+  m_LocalRotation: {x: -0, y: -0, z: -0.98934835, w: 0.14556755}
   m_LocalPosition: {x: 0.22310403, y: -0.4526908, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12676,7 +12676,7 @@ Transform:
   - {fileID: 1063330360}
   m_Father: {fileID: 1278019680}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -163.26}
 --- !u!1 &663939705
 GameObject:
   m_ObjectHideFlags: 0
@@ -18707,6 +18707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845328387}
   - component: {fileID: 845328386}
+  - component: {fileID: 845328388}
   m_Layer: 0
   m_Name: KarmelekGracz
   m_TagString: Untagged
@@ -18781,6 +18782,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &845328388
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845328385}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a14b3c65df349e240bbe9a7f443144b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &847239756
 GameObject:
   m_ObjectHideFlags: 0
@@ -30582,8 +30603,8 @@ MonoBehaviour:
   - {fileID: 862954194}
   - {fileID: 1998595452}
   m_Bounds:
-    m_Center: {x: -0.027066827, y: -0.15427876, z: 0}
-    m_Extent: {x: 1.000757, y: 1.4402164, z: 0}
+    m_Center: {x: -0.028164148, y: -0.15427864, z: 0}
+    m_Extent: {x: 1.0018544, y: 1.4402163, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -30647,7 +30668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377181175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.37, y: -2.568, z: -0.1223101}
+  m_LocalPosition: {x: -4.49, y: -2.71, z: -0.1223101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31161,6 +31182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519222196}
   - component: {fileID: 1519222195}
+  - component: {fileID: 1519222197}
   m_Layer: 0
   m_Name: KarmelekAI
   m_TagString: Untagged
@@ -31235,6 +31257,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1519222197
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519222194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b02c7666fe0f81f42a5c4ff6c708eea9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1523412279
 GameObject:
   m_ObjectHideFlags: 0
@@ -36991,7 +37033,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732034810}
-  m_LocalRotation: {x: 0, y: -0, z: 0.98313415, w: 0.18288589}
+  m_LocalRotation: {x: -0, y: -0, z: 0.982908, w: 0.1840976}
   m_LocalPosition: {x: 0.24142103, y: 0.48357707, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36999,7 +37041,7 @@ Transform:
   - {fileID: 1926789481}
   m_Father: {fileID: 1278019680}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 158.783}
 --- !u!1 &1778068735
 GameObject:
   m_ObjectHideFlags: 0
@@ -48711,7 +48753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2096645947
 MonoBehaviour:
   m_ObjectHideFlags: 0

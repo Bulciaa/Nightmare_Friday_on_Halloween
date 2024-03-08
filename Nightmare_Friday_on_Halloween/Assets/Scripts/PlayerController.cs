@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 	public string nameLevel;	
 
 	public float swimForce = 40f;
-   	public Transform waterLevel;
+   	
 	private bool isUnderwater;
 	
 
@@ -73,7 +73,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject TutorialCanvas;
     public bool tutorialActive = true;
-
+	
+	public AudioSource grabCoin;
+	public AudioSource kill;
+	public AudioSource bubbleSound;
+	public AudioSource perkSound;
 
     public int additionalOxygenPoints = 5; // Liczba dodatkowych punkt w tlenu po zebraniu obiektu "Bubble"
 
@@ -226,6 +230,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = respawnPoint;
             LoseLife();
+		kill.Play();
 
         }
 
@@ -250,11 +255,13 @@ public class PlayerController : MonoBehaviour
         else if (collision.CompareTag("Bubble"))
         {
             CollectBubble(collision.gameObject);
+		bubbleSound.Play();
         }
 	
 	    else if (collision.CompareTag("Heart"))
 	    {
 		    CollectHeart(collision.gameObject);
+			
 	    }
 
 	    else if (collision.CompareTag("Water"))
@@ -269,6 +276,7 @@ public class PlayerController : MonoBehaviour
 		
 		    Jumping(collision.gameObject);
 		    JumpingBoot();
+			perkSound.Play();
 	    }
 
 	    else if (collision.CompareTag("Platforma"))
@@ -358,6 +366,7 @@ public class PlayerController : MonoBehaviour
 			currentLives++;
 			UpdateUI();
 			Destroy(heart);
+			perkSound.Play();
 		}
 	}
 
@@ -410,6 +419,11 @@ public class PlayerController : MonoBehaviour
         progressBar.value = (float)score / maxOrb;
 
         orbCollected++;
+
+	
+	{
+		grabCoin.Play();
+	}
 
         Destroy(orb);
         if (orbCollected >= maxOrb && portalPosition == Vector3.zero)
