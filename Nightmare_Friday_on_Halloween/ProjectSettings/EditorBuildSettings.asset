@@ -39,8 +39,14 @@ EditorBuildSettings:
     path: Assets/Scenes/KrugerP2.unity
     guid: fb12c7b5d6b2dd6468a99b7a54c1b034
   - enabled: 1
-    path: Assets/Scenes/CutscenkaOst.unity
-    guid: a3e4a28ffee6cfd47ab0992bc3a3abb3
+    path: "Assets/Scenes/Ko\u0144cowaCutscenkaJs.unity"
+    guid: c8e84eac1c8a3a74d9d783b5cd395087
+  - enabled: 1
+    path: "Assets/Scenes/Ko\u0144cowaCutscenkaKr.unity"
+    guid: 31fc0b4d0cc332242a8377fb88c4cb8f
+  - enabled: 1
+    path: Assets/Scenes/Ostatni PoziomJs.unity
+    guid: 3e3768ff0a4a1954294d3b2b65f6677f
   - enabled: 1
     path: Assets/Scenes/Ostatni PoziomKr.unity
     guid: 5d8606ec4264dbf4c85b81c0b9b4318f
