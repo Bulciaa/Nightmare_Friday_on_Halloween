@@ -46085,6 +46085,7 @@ MonoBehaviour:
   gameTime: 30
   TutorialCanvas: {fileID: 732712153}
   tutorialActive: 1
+  animator: {fileID: 628834500689973042}
 --- !u!4 &628834500715167486
 Transform:
   m_ObjectHideFlags: 0
@@ -47382,6 +47383,7 @@ MonoBehaviour:
   karmelekAI: {fileID: 540335756859876281, guid: 605712117a7e0964699fdbe7913a1ced, type: 3}
   TutorialCanvas: {fileID: 732712153}
   tutorialActive: 1
+  animator: {fileID: 8060726495654278600}
 --- !u!95 &8060726495654278600
 Animator:
   serializedVersion: 5

@@ -13,6 +13,7 @@ public class AIScript : MonoBehaviour
 
     public GameObject TutorialCanvas;
     public bool tutorialActive = true;
+    public Animator animator;
     void Start()
     {  
 	
@@ -29,6 +30,7 @@ public class AIScript : MonoBehaviour
 		yield return new WaitForSeconds(4f);
 		gameRunning = true;
         InvokeRepeating("IncreaseNumberValue", 0.5f, speedCounting);
+        animator.SetBool("isCutting", true);
     }
 
     void IncreaseNumberValue()

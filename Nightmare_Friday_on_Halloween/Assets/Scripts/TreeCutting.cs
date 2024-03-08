@@ -27,11 +27,13 @@ public class TreeCutting : MonoBehaviour
     public GameObject TutorialCanvas;
     public bool tutorialActive = true; // Flaga informuj¹ca, czy tutorial jest aktywny
 
+    public Animator animator;
 
     private Vector3 originalSizeA;
     private Vector3 originalSizeD;
     void Start()
     {
+
         originalSizeA = buttonA.transform.localScale;
         originalSizeD = buttonD.transform.localScale;
 
@@ -51,8 +53,9 @@ public class TreeCutting : MonoBehaviour
 
         if (!tutorialActive && gameRunning)
         {
-            gameTime -= Time.deltaTime;
 
+            gameTime -= Time.deltaTime;
+            animator.SetBool("isCutting", true);
             if (gameTime <= 0)
             {
                 gameTime = 0;
@@ -102,7 +105,10 @@ public class TreeCutting : MonoBehaviour
     {
         gameRunning = false;
         yield return new WaitForSeconds(4f);
+
         gameRunning = true;
+
+
     }
 
     void IncreaseSize(GameObject button)
